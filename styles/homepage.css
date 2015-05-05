@@ -1,0 +1,126 @@
+/*
+Template Name: Pure Elegance
+File: Homepage CSS
+Author: OS Templates
+Author URI: http://www.os-templates.com/
+Licence: <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>
+*/
+
+#homecontent-top, #homecontent{
+	padding:15px 0;
+	}
+
+#homecontent-top #homecontent-movie{
+	display:inline;
+	float:right;
+	width:528px;
+	height:285px;
+	border:6px solid #666666;
+	}
+
+#homecontent-top #homecontent-topleft{
+	display:block;
+	float:left;
+	width:385px;
+	margin:0;
+	padding:0;
+	}
+	
+#homecontent-top #homecontent-topleft a{
+	color:#660000;
+	background-color:#EEEDE8;
+	}
+
+#homecontent-top #homecontent-topleft h2.title{
+	display:block;
+	width:385px;
+	margin:0 0 15px 0;
+	padding:0 0 8px 0;
+	font-size:22px;
+	font-weight:normal;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	color:#363636;
+	background-color:#EEEDE8;
+	border-bottom:2px solid #CCCCCC;
+	}
+
+#homecontent-top #homecontent-topleft p{
+	display:block;
+	width:385px;
+	margin:0;
+	padding:0;
+	}
+
+#homecontent-top #homecontent-topleft p.more{
+	display:block;
+	width:385px;
+	margin:15px 0;
+	padding:0 0 5px 0;
+	text-align:right;
+	clear:both;
+	border-bottom:1px dotted #666666;
+	}
+
+#homecontent-top #homecontent-topleft p.last{
+	margin-bottom:0;
+	}
+
+#homecontent-top #homecontent-topleft img{
+	float:left;
+	margin:0 5px 3px 0;
+	padding:4px;
+	color:#666666;
+	background-color:#C2C2C2;
+	border:1px solid #666666;
+	}
+
+#homecontent ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+	}
+
+#homecontent a{
+	color:#660000;
+	background-color:#D2CFC1;
+	}
+
+#homecontent li{
+	display:block;
+	float:left;
+	width:300px;
+	margin:0 30px 0 0;
+	padding:0;
+	}
+
+#homecontent li.last{margin-right:0;}
+
+#homecontent li p.imgholder{
+	display:block;
+	width:290px;
+	height:100px;
+	margin:0 0 10px 0;
+	padding:4px;
+	color:#666666;
+	background-color:#C2C2C2;
+	border:1px solid #666666;
+	}
+
+#homecontent li h2{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:13px;
+	font-weight:bold;
+	}
+
+#homecontent p.readmore{
+	display:block;
+	width:290px;
+	padding:5px;
+	text-align:right;
+	font-weight:bold;
+	}
+
+#homecontent p.readmore, #homecontent p.readmore a{
+	color:#660000;
+	background-color:#E0DED6;
+	}

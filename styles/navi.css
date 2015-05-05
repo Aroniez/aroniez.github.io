@@ -1,0 +1,71 @@
+/*
+Template Name: Pure Elegance
+File: Navigation CSS
+Author: OS Templates
+Author URI: http://www.os-templates.com/
+Licence: <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>
+*/
+
+#topnav{
+	z-index:1000;
+	}
+
+#topnav ul, #topnav li{
+	float:left;
+	list-style:none;
+	margin:0;
+	padding:0;
+	font-weight:bold;
+	text-transform:uppercase;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	}
+
+#topnav li a:link, #topnav li a:visited{
+	display:block;
+	margin:0 15px 0 0;
+	padding:14px 15px;
+	color:#FFFFFF;
+	background-color:#272727;
+	}
+
+#topnav li a:hover, #topnav li a.active{
+	color:#2E271D;
+	background-color:#EEEDE8;
+	}
+	
+#topnav li li a:link, #topnav li li a:visited{
+	width:150px;
+	float:none;
+	margin:0;
+	padding:7px 10px;
+	font-size:12px;
+	font-weight:normal;
+	color:#FFFFFF;
+	background-color:#272727;
+	}
+	
+#topnav li li a:hover{
+	color:#4F4331;
+	background-color:#DCD0B6;
+	}
+
+#topnav li ul{
+	z-index:9999;
+	position:absolute;
+	left:-999em;
+	height:auto;
+	width:170px;
+	border:1px solid #E6E6E6;
+	border-top:none;
+	border-right:none;
+	}
+
+#topnav li ul a{width:140px;}
+
+#topnav li ul ul{margin:-32px 0 0 0;}
+
+#topnav li:hover ul, #topnav li li:hover ul{left:auto;}
+
+#topnav li:hover{position:static;}
+
+#topnav li.last a{margin-right:0;}

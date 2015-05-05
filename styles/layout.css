@@ -1,0 +1,359 @@
+/*
+Template Name: Pure Elegance
+File: Layout CSS
+Author: OS Templates
+Author URI: http://www.os-templates.com/
+Licence: <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>
+*/
+
+@import url(navi.css);
+@import url(forms.css);
+@import url(tables.css);
+@import url(homepage.css);
+
+body{
+	margin:0;
+	padding:0;
+	font-size:13px;
+	font-family:verdana, Arial, Helvetica, sans-serif;
+	color:#FFFFFF;
+	background-color:#1F1F1F;
+	}
+
+img{margin:0; padding:0; border:0;}
+.justify{text-align:justify;}
+.bold{font-weight:bold;}
+.center{text-align:center;}
+.right{text-align:right;}
+.nostart {list-style-type:none; margin:0; padding:0;}
+.clear{clear:both;}
+br.clear{clear:both; margin-top:-15px;}
+a{outline:none; text-decoration:none;}
+
+.fl_left{float:left;}
+.fl_right{float:right;}
+
+.imgl, .imgr{border:1px solid #6A604F; padding:5px; color:#666666; background-color:#F7F7F7;}
+.imgl{float:left; margin:0 8px 8px 0; clear:left;}
+.imgr{float:right; margin:0 0 8px 8px; clear:right;}
+
+/* ----------------------------------------------Wrapper-------------------------------------*/
+
+div.wrapper{
+	display:block;
+	width:100%;
+	margin:0;
+	text-align:left;
+	}
+
+.col1{color:#FFFFFF; background-color:#000000;}
+.col2{color:#CCCCCC; background-color:#1D1D1D; border-bottom:1px solid #CCCCCC;}
+.col3{color:#FFFFFF; background-color:#121212;}
+.col4{color:#FFFFFF; background-color:#272727;}
+.col5{color:#666666; background-color:#EEEDE8;}
+.col6{color:#363636; background-color:#D2CFC1;}
+.col7{color:#FFFFFF; background-color:#000000; border-top:10px solid #666666;}
+.col8{color:#FFFFFF; background-color:#1F1F1F;}
+
+/* ----------------------------------------------Generalise-------------------------------------*/
+
+#topbar, #head, #latest, #topnav, #homecontent-top, #homecontent, #container, #footer, #copyright{
+	position:relative;
+	margin:0 auto 0;
+	display:block;
+	width:960px;
+	}
+
+/* ----------------------------------------------TopBar-------------------------------------*/
+
+#topbar{
+	height:35px;
+	padding:10px 0 0 0;
+	}
+
+#topbar ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+	}
+
+#topbar #social{
+	display:block;
+	float:right;
+	}
+
+#topbar #social li{
+	display:inline;
+	margin-left:20px;
+	cursor:pointer;
+	}
+
+/* ----------------------------------------------Head-------------------------------------*/
+
+#head{
+	height:100px;
+	font-size:16px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	}
+
+#head h1, #head p, #head ul, #head a{
+	margin:0;
+	padding:0;
+	font-weight:normal;
+	list-style:none;
+	line-height:normal;
+	}
+
+#head h1 a{
+	position:absolute;
+	top:16px;
+	left:0;
+	font-size:36px;
+	color:#99CC00;
+	background-color:#1D1D1D;
+	}
+
+#head p{
+	display:block;
+	position:absolute;
+	top:60px;
+	left:0;
+	}
+
+#head #topads{
+	display:block;
+	width:468px;
+	height:60px;
+	position:absolute;
+	top:20px;
+	right:0;
+	}
+
+/* ----------------------------------------------Latest-------------------------------------*/
+
+#latest{
+	padding:15px 0;
+	}
+
+#latest p, #latest ul, #latest a{
+	margin:0;
+	padding:0;
+	font-weight:normal;
+	list-style:none;
+	line-height:normal;
+	}
+
+#latest a{
+	font-weight:bold;
+	color:#99CC00;
+	background-color:#1C1C1C;
+	}
+
+#latest li{
+	display:block;
+	float:left;
+	width:300px;
+	margin:0 30px 0 0;
+	padding:0;
+	color:#FFFFFF;
+	background-color:#1C1C1C;
+	}
+
+#latest li.last{
+	margin-right:0;
+	}
+
+#latest li p{
+	margin:8px;
+	line-height:1.6em;
+	}
+
+/* ----------------------------------------------Content-------------------------------------*/
+
+#container{
+	padding:15px 0;
+	}
+	
+#container h1, #container h2, #container h3, #container h4, #container h5, #container h6{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-weight:normal;
+	font-size:22px;
+	margin:0 0 10px 0;
+	padding:0;
+	}
+
+#container a{
+	color:#660000;
+	background-color:#EEEDE8;
+	}
+
+#content{
+	display:block;
+	float:left;
+	width:660px;
+	padding:10px 0 0 0;
+	}
+
+#content #screen, #content #info{ margin-bottom:15px; padding-bottom:20px; border-bottom:1px dotted #666666; }
+
+#content #info p{ margin:0; padding:0; }
+
+/* ------Comments-----*/
+
+#comments{margin-bottom:40px;}
+
+#comments .commentlist {margin:0; padding:0;}
+
+#comments .commentlist ul{margin:0; padding:0; list-style:none;}
+
+#comments .commentlist li.comment_odd, #comments .commentlist li.comment_even{margin:0 0 10px 0; padding:15px; list-style:none;}
+
+#comments .commentlist li.comment_odd{color:#666666; background-color:#F7F7F7;}
+#comments .commentlist li.comment_odd a{color:#660000; background-color:#F7F7F7;}
+
+#comments .commentlist li.comment_even{color:#666666; background-color:#E8E8E8;}
+#comments .commentlist li.comment_even a{color:#660000; background-color:#E8E8E8;}
+
+#comments .commentlist .author .name{font-weight:bold;}
+#comments .commentlist .submitdate{font-size:smaller;}
+
+#comments .commentlist p{margin:10px 5px 10px 0; padding:0; font-weight: normal;text-transform: none;}
+
+#comments .commentlist li .avatar{float:right; border:1px solid #EEEEEE; margin:0 0 0 10px;}
+
+/* ----------------------------------------------Column-------------------------------------*/
+
+#column{
+	display:block;
+	float:right;
+	width:270px;
+	padding:10px 0 0 0;
+	}
+
+#column .holder{
+	display:block;
+	width:260px;
+	margin-bottom:15px;
+	padding-left:10px;
+	}
+
+#column .holder p{
+	line-height:1.6em;
+	}
+
+#column h2{
+	font-size:20px;
+	font-weight:normal;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	}
+
+#column .holder p.readmore{
+	display:block;
+	width:100%;
+	font-weight:bold;
+	text-align:right;
+	line-height:normal;
+	}
+
+#column div.imgholder{
+	display:block;
+	width:250px;
+	margin:0 0 10px 0;
+	padding:4px;
+	color:#666666;
+	background-color:#F7F7F7;
+	border:1px solid #CCCCCC;
+	}
+
+#column .sponsors{
+	display:block;
+	width:270px;
+	margin-bottom:15px;
+	}
+
+#column .sponsors .title{margin:0 0 8px 10px;}
+
+#column .sponsors ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+	}
+
+#column ul#banner125 li{
+	display:inline; /* Gets Rid of IE6 double margin bug */
+	float:left;
+	width:125px;
+	height:125px;
+	margin:0 0 10px 10px;
+	}
+
+/* ----------------------------------------------Footer-------------------------------------*/
+
+#footer{
+	padding:15px 0;
+	}
+
+#footer h2, #footer p, #footer ul, #footer a{
+	margin:0;
+	padding:0;
+	font-weight:normal;
+	list-style:none;
+	line-height:normal;
+	}
+
+#footer h2{
+	font-size:14px;
+	font-weight:bold;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	margin:0 0 15px 0;
+	padding:0 0 8px 0;
+	border-bottom:1px dotted #FFFFFF;
+	}
+
+#footer a{
+	color:#99CC00;
+	background-color:#000000;
+	}
+
+#footer .footbox{
+	display:block;
+	float:left;
+	width:300px;
+	margin:0 30px 0 0;
+	padding:0;
+	}
+
+#footer .twitter li{
+	margin-bottom:25px;
+	text-align:right;
+	}
+
+#footer .twitter span{
+	display:block;
+	width:300px;
+	text-align:left;
+	margin-bottom:5px;
+	}
+
+#footer .flickrbox{margin-right:0;}
+#footer .flickrbox .wrap{display:block; width:300px;}
+#footer .flickrbox .wrap .fix{clear:both;}
+#footer .flickrbox .wrap .flickr_badge_image{display:block; float:left; margin:0 15px 15px 0; width:90px; height:90px;}
+#footer .flickrbox .wrap #flickr_badge_image3, #footer .flickrbox .wrap #flickr_badge_image6, #footer .flickrbox .wrap #flickr_badge_image9{margin-right:0;}
+
+/* ----------------------------------------------Copyright-------------------------------------*/
+
+#copyright{
+	padding:15px 0;
+	font-size:11px;
+	}
+
+#copyright a{
+	color:#FFFFFF;
+	background-color:#1F1F1F;
+	}
+
+#copyright p{
+	margin:0;
+	padding:0;
+	}
