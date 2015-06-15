@@ -1,173 +1,37 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
-<head profile="http://gmpg.org/xfn/11">
-<title>Pure Elegance</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<meta http-equiv="imagetoolbar" content="no" />
-<link rel="stylesheet" href="styles/layout.css" type="text/css" />
-</head>
-<body id="top">
-<div class="wrapper col1">
-  <div id="topbar">
-    <div id="social">
-      <ul>
-        <li><a href="#"><img src="images/bookmarks/rss.jpg" width="25" height="25" alt="RSS" /></a></li>
-        <li onclick="window.open('http://www.facebook.com/share.php?u='+encodeURIComponent(location.href)+'&amp;t=');return false;"><img src="images/bookmarks/facebook.jpg" width="25" height="25" alt="Add to: Facebook" /></li>
-        <li onclick="window.open('http://del.icio.us/post?v=2&amp;url='+encodeURIComponent(location.href)+'&amp;notes=&amp;tags=&amp;title='+encodeURIComponent(document.title));return false;"><img src="images/bookmarks/delicious.jpg" width="25" height="25" alt="Del.icio.us" /></li>
-        <li onclick="window.open('http://www.stumbleupon.com/submit?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title));return false;"><img src="images/bookmarks/stumbleupon.jpg" width="25" height="25" alt="Stumbleupon" /></li>
-        <li onclick="window.open('http://reddit.com/submit?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title));return false;"><img src="images/bookmarks/reddit.jpg" width="25" height="25" alt="reddit" /></li>
-        <li onclick="window.open('http://digg.com/submit?phase=2&amp;url='+encodeURIComponent(location.href)+'&amp;bodytext=&amp;tags=&amp;title='+encodeURIComponent(document.title));return false;"> <img src="images/bookmarks/digg.jpg" width="25" height="25" alt="Digg" /></li>
-        <li onclick="window.open('http://myweb2.search.yahoo.com/myresults/bookmarklet?t='+encodeURIComponent(document.title)+'&amp;d=&amp;tag=&amp;u='+encodeURIComponent(location.href));return false;"><img src="images/bookmarks/yahoo.jpg" width="25" height="25" alt="Y! MyWeb" /></li>
-        <li class="last" onclick="window.open('http://www.google.com/bookmarks/mark?op=add&amp;hl=de&amp;bkmk='+encodeURIComponent(location.href)+'&amp;annotation=&amp;labels=&amp;title='+encodeURIComponent(document.title));return false;"><img src="images/bookmarks/google.jpg" width="25" height="25" alt="Google" /></li>
-      </ul>
-    </div>
-    <div id="search">
-      <form action="#" method="post">
-        <fieldset>
-          <legend>Site Search</legend>
-          <input type="text" value="Search the site&hellip;"  onfocus="this.value=(this.value=='Search the site&hellip;')? '' : this.value ;" />
-          <input type="submit" name="go" id="go" value="GO" />
-        </fieldset>
-      </form>
-    </div>
+---
+layout: default
+title: Home
+---
+
+<div class="posts">
+  {% for post in paginator.posts %}
+  <div class="post">
+    <h1 class="post-title">
+      <a href="{{ post.url }}">
+        {{ post.title }}
+      </a>
+    </h1>
+
+    <span class="post-date">{{ post.date | date_to_string }}</span>
+
+    {{ post.content }}
   </div>
+  {% endfor %}
 </div>
-<div class="wrapper col2">
-  <div id="head">
-    <h1><a href="#">Welcome to my hood</a></h1>
-    <p>Aaron Rono</p>
-    <div id="topads"><a href="#"><img src="images/demo/468x60.gif" alt="" /></a></div>
-  </div>
+
+<div class="pagination">
+  {% if paginator.next_page %}
+    <a class="pagination-item older" href="{{ site.baseurl }}page{{paginator.next_page}}">Older</a>
+  {% else %}
+    <span class="pagination-item older">Older</span>
+  {% endif %}
+  {% if paginator.previous_page %}
+    {% if paginator.page == 2 %}
+      <a class="pagination-item newer" href="{{ site.baseurl }}">Newer</a>
+    {% else %}
+      <a class="pagination-item newer" href="{{ site.baseurl }}page{{paginator.previous_page}}">Newer</a>
+    {% endif %}
+  {% else %}
+    <span class="pagination-item newer">Newer</span>
+  {% endif %}
 </div>
-<div class="wrapper col3">
-  <div id="latest">
-    <ul>
-      <li>
-        <div><a href="#"><img src="images/demo/300x250.gif" alt="" /></a></div>
-        <p><a href="#">Indonectetus facilis leo nibh</a></p>
-        <p>Nullamlacus dui ipsum conseque loborttis non euisque morbi penas dapibulum orna.</p>
-      </li>
-      <li>
-        <div><a href="#"><img src="images/demo/300x250.gif" alt="" /></a></div>
-        <p><a href="#">Indonectetus facilis leo nibh</a></p>
-        <p>Nullamlacus dui ipsum conseque loborttis non euisque morbi penas dapibulum orna.</p>
-      </li>
-      <li class="last">
-        <div><a href="#"><img src="images/demo/300x250.gif" alt="" /></a></div>
-        <p><a href="#">Indonectetus facilis leo nibh</a></p>
-        <p>Nullamlacus dui ipsum conseque loborttis non euisque morbi penas dapibulum orna.</p>
-      </li>
-    </ul>
-    <div class="clear"></div>
-  </div>
-</div>
-<div class="wrapper col4">
-  <div id="topnav">
-    <ul>
-      <li><a class="active" href="index.html">Home</a></li>
-      <li><a href="style-demo.html">Style Demo</a></li>
-      <li><a href="full-width.html">Full Width</a></li>
-      <li><a href="#">DropDown</a>
-        <ul>
-          <li><a href="#">Link 1</a></li>
-          <li><a href="#">Link 2</a></li>
-          <li><a href="#">Link 3</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Link 1</a></li>
-      <li><a href="#">Link 2</a></li>
-    </ul>
-    <div class="clear"></div>
-  </div>
-</div>
-<div class="wrapper col5">
-  <div id="homecontent-top">
-    <div id="homecontent-movie">
-      <!-- Begin Flash Here -->
-      <object type="application/x-shockwave-flash" data="http://www.youtube.com/v/V7eR7AqvUkI&amp;hl=en_US&amp;fs=1&amp;" width="528" height="285">
-        <param name="movie" value="http://www.youtube.com/v/V7eR7AqvUkI&amp;hl=en_US&amp;fs=1&amp;" />
-        <param name="wmode" value="opaque" />
-        <param name="quality" value="high" />
-        <param name="bgcolor" value="#EEEDE8" />
-        <param name="allowfullscreen" value="true" />
-        <param name="allowscriptaccess" value="never" />
-      </object>
-      <!-- End Flash Here -->
-    </div>
-    <div id="homecontent-topleft">
-      <h2 class="title">Latest News &amp; Information</h2>
-      <p><a href="#"><img src="images/demo/80x80.gif" alt="" /></a> Feugiatrutrum rhoncus semper enim massa eu intesque ipsum velit orci dolorem. Atnatis dolor tincidunt nulla elit auctortis laculisi elit fauctortor natis loreet.</p>
-      <p class="more"><a href="#">Read More &raquo;</a></p>
-      <p><a href="#"><img src="images/demo/80x80.gif" alt="" /></a> Feugiatrutrum rhoncus semper enim massa eu intesque ipsum velit orci dolorem. Atnatis dolor tincidunt nulla elit auctortis laculisi elit fauctortor natis loreet.</p>
-      <p class="more last"><a href="#">Read More &raquo;</a></p>
-    </div>
-    <div class="clear"></div>
-  </div>
-</div>
-<div class="wrapper col6">
-  <div id="homecontent">
-    <ul>
-      <li>
-        <p class="imgholder"><a href="#"><img src="images/demo/290x100.gif" alt="" /></a></p>
-        <h2>About This Template</h2>
-        <p>This is a W3C standards compliant free website template from <a href="http://www.os-templates.com/">OS Templates</a>. Urnaultrices quis curabitur phasellentesque congue magnis vestibulum quismodo nulla et feugiat. Adipisciniapellentum leo ut consequam ris felit elit id nibh sociis malesuada.</p>
-        <p class="readmore"><a href="#">Read More &raquo;</a></p>
-      </li>
-      <li>
-        <p class="imgholder"><a href="#"><img src="images/demo/290x100.gif" alt="" /></a></p>
-        <h2>Template Terms of Use</h2>
-        <p>This template is distributed using a <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>, which allows you to use and modify the template for both personal and commercial use when you keep the provided credit links in the footer. Leo ut consequam ris felit elit id nibh sociis malesuada.</p>
-        <p class="readmore"><a href="#">Read More &raquo;</a></p>
-      </li>
-      <li class="last">
-        <p class="imgholder"><a href="#"><img src="images/demo/290x100.gif" alt="" /></a></p>
-        <h2>Indonectetus facilis leo nibh</h2>
-        <p>Nullamlacus dui ipsum conseque loborttis non euisque morbi penas dapibulum orna. Urnaultrices quis curabitur phasellentesque congue magnis vestibulum quismodo nulla et feugiat. Adipisciniapellentum leo ut consequam ris felit elit id nibh sociis malesuada.</p>
-        <p class="readmore"><a href="#">Read More &raquo;</a></p>
-      </li>
-    </ul>
-    <div class="clear"></div>
-  </div>
-</div>
-<div class="wrapper col7">
-  <div id="footer">
-    <div class="footbox">
-      <h2>Site Sponsors</h2>
-      <a href="#"><img src="images/demo/300x250.gif" alt="" /></a> </div>
-    <div class="footbox twitter">
-      <h2 class="title">Twitter</h2>
-      <ul id="twitter_update_list">
-        <li><span>@<a href="#">name</a> Lacuspretium justo ris adipis mi temper mus ut elis nam cras.</span> <a style="font-size: 85%;" href="#">about 4 hours ago</a></li>
-        <li><span>@<a href="#">name</a> Pharetraenim orci vel nulla nisl augue vel netus tellus augue nec.</span> <a style="font-size: 85%;" href="#">about 5 hours ago</a></li>
-        <li><span>@<a href="#">name</a> Eulorem sit congue curabitur sagittis cursuscetus fringilla dui tellus pretium enim.</span> <a style="font-size: 85%;" href="#">about 7 hours ago</a></li>
-        <li><span>@<a href="#">name</a> Pharetraenim orci vel nulla nisl augue vel netus tellus augue nec.</span> <a style="font-size: 85%;" href="#">about 5 hours ago</a></li>
-      </ul>
-    </div>
-    <div class="footbox flickrbox">
-      <h2 class="title">Flickr</h2>
-      <div class="wrap">
-        <div class="fix"></div>
-        <div class="flickr_badge_image" id="flickr_badge_image1"><a href="#"><img src="images/demo/90x90.gif" alt="" /></a></div>
-        <div class="flickr_badge_image" id="flickr_badge_image2"><a href="#"><img src="images/demo/90x90.gif" alt="" /></a></div>
-        <div class="flickr_badge_image" id="flickr_badge_image3"><a href="#"><img src="images/demo/90x90.gif" alt="" /></a></div>
-        <div class="flickr_badge_image" id="flickr_badge_image4"><a href="#"><img src="images/demo/90x90.gif" alt="" /></a></div>
-        <div class="flickr_badge_image" id="flickr_badge_image5"><a href="#"><img src="images/demo/90x90.gif" alt="" /></a></div>
-        <div class="flickr_badge_image" id="flickr_badge_image6"><a href="#"><img src="images/demo/90x90.gif" alt="" /></a></div>
-        <div class="flickr_badge_image" id="flickr_badge_image7"><a href="#"><img src="images/demo/90x90.gif" alt="" /></a></div>
-        <div class="flickr_badge_image" id="flickr_badge_image8"><a href="#"><img src="images/demo/90x90.gif" alt="" /></a></div>
-        <div class="flickr_badge_image" id="flickr_badge_image9"><a href="#"><img src="images/demo/90x90.gif" alt="" /></a></div>
-        <div class="fix"></div>
-      </div>
-    </div>
-    <div class="clear"></div>
-  </div>
-</div>
-<div class="wrapper col8">
-  <div id="copyright">
-    <p class="fl_left">Copyright &copy; 2011 - All Rights Reserved - <a href="#">Domain Name</a></p>
-    <p class="fl_right">Template by <a href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
-    <br class="clear" />
-  </div>
-</div>
-</body>
-</html>
