@@ -4,13 +4,22 @@
  <title>Hyde</title>
  <link href="http://hyde.getpoole.com/atom.xml" rel="self"/>
  <link href="http://hyde.getpoole.com/"/>
- <updated>2015-06-18T15:38:26+03:00</updated>
+ <updated>2015-06-18T16:00:15+03:00</updated>
  <id>http://hyde.getpoole.com</id>
  <author>
    <name>Mark Otto</name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Material Design Revisited</title>
+   <link href="http://hyde.getpoole.com/2015/05/18/Material%20Design%20Revisited/"/>
+   <updated>2015-05-18T00:00:00+03:00</updated>
+   <id>http://hyde.getpoole.com/2015/05/18/Material Design Revisited</id>
+   <content type="html">&lt;p&gt;With the new material design in the hood, building android apps is now more fun that complicated.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Introducing Hyde</title>
