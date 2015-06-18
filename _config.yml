@@ -7,15 +7,15 @@ permalink:        pretty
 relative_permalinks: true
 
 # Setup
-title:            Hyde
-tagline:          'A Jekyll theme'
-description:      'A brazen two-column <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
+title:            Aaron Rono
+tagline:          'An Android Enthusiast'
+description:      'Up next...Story of my life'
 url:              http://hyde.getpoole.com
-baseurl:          http://aroniez.github.io/aroniez.github.io/
+baseurl:          http://aroniez.github.io/
 
 author:
-  name:           'Mark Otto'
-  url:            https://twitter.com/mdo
+  name:           'Aaron Rono'
+  url:            https://twitter.com/Aroniez
 
 paginate:         5 
 
@@ -25,5 +25,5 @@ version:          2.1.0
 encoding:         utf-8
 
 github:
-  repo:           https://github.com/poole/hyde
+  repo:           https://github.com/Aroniez/aroniez.github.io
   
