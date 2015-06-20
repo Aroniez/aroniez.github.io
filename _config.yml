@@ -2,16 +2,23 @@
 markdown:         kramdown
 pygments:     	  pygments
 
+pages_list:       
+  About: '/about'
+  Archive: '/archive'
+  Feed: '/atom.xml'
+
 # Permalinks
 permalink:        pretty
 relative_permalinks: true
+
+comments:		true
 
 # Setup
 title:            Aaron Rono
 tagline:          'An Android Enthusiast'
 description:      'Up next...Story of my life'
 url:              http://hyde.getpoole.com
-baseurl:          
+baseurl:          http://aroniez.github.io/
 
 author:
   name:           'Aaron Rono'

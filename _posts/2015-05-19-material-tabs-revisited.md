@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Material Tabs Revisited
+comments: true
 ---
 This isn't a detailed tutorial on how to implement material tabs but just a quick revisit on'em. 
 I assume you've created your project and everything is well set. Head over <a href="http://www.materialpalette.com/">Materialpallte</a> for awesome color choices and download an xml type of colors.
