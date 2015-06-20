@@ -7,7 +7,7 @@ I assume you've created your project and everything is well set. Head over <a hr
 
 </p>
 <p>With Toolbar aboard in replacement of ActionBar, lets start by adding it to our new layout. roughly that would translate to something like this.</p>
-<img src="public/images/toolbar.png">
+<img src="public/images/toolbar.png"  height="400px" width="900px">
 
 <b>Then came material tabs</b>
 For my lazy fellas we gotta head over to our browsers for two major classes, Mr. <code>SlidingTabLayout.java</code> and Mrs.<code>SlidingTabStrip.java</code>.
