@@ -4,7 +4,7 @@
  <title>Aaron Rono</title>
  <link href="http://hyde.getpoole.com/atom.xml" rel="self"/>
  <link href="http://hyde.getpoole.com/"/>
- <updated>2015-06-18T16:36:49+03:00</updated>
+ <updated>2015-06-20T15:35:04+03:00</updated>
  <id>http://hyde.getpoole.com</id>
  <author>
    <name>Aaron Rono</name>
@@ -13,11 +13,135 @@
 
  
  <entry>
-   <title>Material Design Revisited</title>
-   <link href="http://hyde.getpoole.com/2015/05/18/Material%20Design%20Revisited/"/>
-   <updated>2015-05-18T00:00:00+03:00</updated>
-   <id>http://hyde.getpoole.com/2015/05/18/Material Design Revisited</id>
-   <content type="html">&lt;p&gt;With the new material design in the hood, building android apps is now more fun that complicated.&lt;/p&gt;
+   <title>Material Tabs Revisited</title>
+   <link href="http://hyde.getpoole.com/2015/05/19/material-tabs-revisited/"/>
+   <updated>2015-05-19T00:00:00+03:00</updated>
+   <id>http://hyde.getpoole.com/2015/05/19/material-tabs-revisited</id>
+   <content type="html">&lt;p&gt;This isn’t a detailed tutorial on how to implement material tabs but just a quick revisit on’em. 
+I assume you’ve created your project and everything is well set. Head over &lt;a href=&quot;http://www.materialpalette.com/&quot;&gt;Materialpallte&lt;/a&gt; for awesome color choices and download an xml type of colors.&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/p&amp;gt;&lt;/p&gt;
+&lt;p&gt;With Toolbar aboard in replacement of ActionBar, lets start by adding it to our new layout. roughly that would translate to something like this.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;public/images/toolbar.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Then came material tabs&lt;/b&gt;
+For my lazy fellas we gotta head over to our browsers for two major classes, Mr. &lt;code&gt;SlidingTabLayout.java&lt;/code&gt; and Mrs.&lt;code&gt;SlidingTabStrip.java&lt;/code&gt;.
+I like to get mine from Google IO app &lt;a href=&quot;https://github.com/google/iosched/tree/master/android/src/main/java/com/google/samples/apps/iosched/ui/widget&quot;&gt;Here&lt;/a&gt; but you can also get them elsewhere. There is no rule that you should get them from somewhere but my laziness tells me so. 
+Their names are self explanatory so lets see what happens under the hood.&lt;/p&gt;
+&lt;p&gt;With no error nearby, head over to &lt;code&gt;xml&lt;/code&gt; and add some lines
+first, add SlidingTabLayout just below &lt;code&gt;Toolbar&lt;/code&gt;. snippet for SlidingTablayout goes like this
+&lt;p&gt;
+&lt;code&gt;&amp;lt;android.aaron.com.material.tabs.SlidingTabLayout
+            android:id=&quot;@+id/tabs&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:background=&quot;@color/primary&quot;&amp;gt;
+  &amp;lt;/android.aaron.com.material.tabs.SlidingTabLayout&amp;gt;&lt;/code&gt;
+	&lt;/p&gt;
+
+
+but watch out for the package name in &lt;code&gt;android.aaron.com.material.tabs.SlidingTabLayout&lt;/code&gt;. Make sure you replace it with your package.
+
+Now add &lt;code&gt;Viewpager&lt;/code&gt; below them. Something like
+&lt;p&gt;
+&lt;code&gt; &amp;lt;android.support.v4.view.ViewPager
+                android:id=&quot;@+id/pager&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;match_parent&quot;
+                android:layout_alignParentTop=&quot;true&quot;&amp;gt;
+            &amp;lt;/android.support.v4.view.ViewPager&amp;gt;&lt;/code&gt;
+            &lt;/p&gt;
+&lt;/p&gt;
+
+&lt;p&gt;With xml ready to rock and roll, head back to java&lt;/p&gt;
+&lt;p&gt;Start by doing the &lt;code&gt;findViewById()&lt;/code&gt; thing or use &lt;a href=&quot;http://jakewharton.github.io/butterknife/&quot;&gt;Butterknife&lt;/a&gt; if you are farmiliar with it (You should actually use the later...). So far so good? Thats what I thought.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Them Fragments&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I was thinking of using one fragment but then why not create seperate ones for diffrent purpose. Lets say we wanna create something like this... 
+&lt;img src=&quot;public/images/tabs.png&quot; height=&quot;700px&quot; width=&quot;350px&quot; /&gt;
+&lt;p&gt;Create three fragments. A simple fragment class looks like this
+&lt;pre&gt;&lt;code&gt;public class PageTwo extends Fragment {
+
+    public PageTwo() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_page_two, container, false);
+        return view;
+    }
+
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Mr Adapter, where you at?&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Create a class, name it something like MaterialTabsAdapter or something not weird. With simplicity kept constant, extend &lt;code&gt;FragmentPagerAdapter&lt;/code&gt;
+in the &lt;code&gt;getItem(int position)&lt;/code&gt; method, you can get fragments by,
+&lt;pre&gt;&lt;code&gt;
+ @Override
+    public Fragment getItem(int position) {
+      
+        Fragment fragment;
+        switch (position) {
+            case 0:
+                fragment = new PageOne();
+                return fragment;
+
+            case 1:
+                fragment = new PageThree();
+                return fragment;
+            case 2:
+                fragment = new PageTwo();
+                return fragment;
+            default:
+                fragment = new PageOne();
+                return fragment;
+        }
+    }
+&lt;/code&gt;
+&lt;/pre&gt;
+&lt;p&gt;This means that when we are in a particular page we load a particular fragment&lt;/p&gt;
+&lt;p&gt;
+&lt;pre&gt;&lt;code&gt; @Override
+    public int getCount() {
+        //The number of fragments we got
+        return 3;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        //Sample titles for our tabs
+        if (position == 0) {
+            return &quot;Movies&quot;;
+        } else if (position == 1) {
+            return &quot;Series&quot;;
+        } else if (position == 2) {
+            return &quot;Films&quot;;
+        }
+        return &quot;&quot;;
+    }
+&lt;/code&gt;
+&lt;/pre&gt;
+&lt;/p&gt;
+&lt;p&gt;So far we&#39;ve done nearly everything. The last lap is to switch the circuit on and watch&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Let there be magic...&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;
+Lets make this baby to walk on its own.
+	Pull over from adapter and head to &lt;code&gt;MainActivity.java&lt;/code&gt;, assuming that&#39;s the correct class and add the following&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;MaterialTabsAdapter myFragmentAdapter = new MaterialTabsAdapter(getSupportFragmentManager());   
+	viewPager.setAdapter(myFragmentAdapter);
+	slidingTabLayout.setDistributeEvenly(true);
+	slidingTabLayout.setViewPager(viewPager);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Easy right, Keep it simple Stupid (KISS).
+	This was my first post and it&#39;s probably terrible. Too bad there ain&#39;t comment section, but if you feel like sharing something with me, ronolikeaaron@gmail.com is my mail. Cheers!
+&lt;/p&gt;
+
+&lt;/p&gt;
 </content>
  </entry>
  
