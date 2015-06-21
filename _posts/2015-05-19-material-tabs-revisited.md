@@ -9,7 +9,7 @@ I assume you've created your project and everything is well set. Head over <a hr
 </p>
 <p>With Toolbar aboard in replacement of ActionBar, lets start by adding it to our new layout. roughly that would translate to something like this.</p>
 <img src="public/images/toolbar.png"  height="400px" width="900px">
-
+<img src="public/images/tabs.png" height="700px" width="350px">
 <b>Then came material tabs</b>
 For my lazy fellas we gotta head over to our browsers for two major classes, Mr. <code>SlidingTabLayout.java</code> and Mrs.<code>SlidingTabStrip.java</code>.
 I like to get mine from Google IO app <a href="https://github.com/google/iosched/tree/master/android/src/main/java/com/google/samples/apps/iosched/ui/widget">Here</a> but you can also get them elsewhere. There is no rule that you should get them from somewhere but my laziness tells me so. 

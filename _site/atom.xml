@@ -4,7 +4,7 @@
  <title>Aaron Rono</title>
  <link href="http://hyde.getpoole.com/atom.xml" rel="self"/>
  <link href="http://hyde.getpoole.com/"/>
- <updated>2015-06-21T19:32:36+03:00</updated>
+ <updated>2015-06-21T19:35:32+03:00</updated>
  <id>http://hyde.getpoole.com</id>
  <author>
    <name>Aaron Rono</name>
@@ -22,9 +22,9 @@ I assume you’ve created your project and everything is well set. Head over &lt
 
 &lt;p&gt;&amp;lt;/p&amp;gt;&lt;/p&gt;
 &lt;p&gt;With Toolbar aboard in replacement of ActionBar, lets start by adding it to our new layout. roughly that would translate to something like this.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;public/images/toolbar.png&quot; height=&quot;400px&quot; width=&quot;900px&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Then came material tabs&lt;/b&gt;
+&lt;p&gt;&lt;img src=&quot;public/images/toolbar.png&quot; height=&quot;400px&quot; width=&quot;900px&quot; /&gt;
+&lt;img src=&quot;public/images/tabs.png&quot; height=&quot;700px&quot; width=&quot;350px&quot; /&gt;
+&lt;b&gt;Then came material tabs&lt;/b&gt;
 For my lazy fellas we gotta head over to our browsers for two major classes, Mr. &lt;code&gt;SlidingTabLayout.java&lt;/code&gt; and Mrs.&lt;code&gt;SlidingTabStrip.java&lt;/code&gt;.
 I like to get mine from Google IO app &lt;a href=&quot;https://github.com/google/iosched/tree/master/android/src/main/java/com/google/samples/apps/iosched/ui/widget&quot;&gt;Here&lt;/a&gt; but you can also get them elsewhere. There is no rule that you should get them from somewhere but my laziness tells me so. 
 Their names are self explanatory so lets see what happens under the hood.&lt;/p&gt;
