@@ -4,7 +4,7 @@
  <title>Aaron Rono</title>
  <link href="http://hyde.getpoole.com/atom.xml" rel="self"/>
  <link href="http://hyde.getpoole.com/"/>
- <updated>2015-06-21T19:35:32+03:00</updated>
+ <updated>2015-07-06T22:27:11-07:00</updated>
  <id>http://hyde.getpoole.com</id>
  <author>
    <name>Aaron Rono</name>
@@ -15,15 +15,25 @@
  <entry>
    <title>Material Tabs Revisited</title>
    <link href="http://hyde.getpoole.com/2015/05/19/material-tabs-revisited/"/>
-   <updated>2015-05-19T00:00:00+03:00</updated>
+   <updated>2015-05-19T00:00:00-07:00</updated>
    <id>http://hyde.getpoole.com/2015/05/19/material-tabs-revisited</id>
    <content type="html">&lt;p&gt;This isn’t a detailed tutorial on how to implement material tabs but just a quick revisit on’em. 
 I assume you’ve created your project and everything is well set. Head over &lt;a href=&quot;http://www.materialpalette.com/&quot;&gt;Materialpallte&lt;/a&gt; for awesome color choices and download an xml type of colors.&lt;/p&gt;
 
 &lt;p&gt;&amp;lt;/p&amp;gt;&lt;/p&gt;
 &lt;p&gt;With Toolbar aboard in replacement of ActionBar, lets start by adding it to our new layout. roughly that would translate to something like this.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;public/images/toolbar.png&quot; height=&quot;400px&quot; width=&quot;900px&quot; /&gt;
-&lt;img src=&quot;public/images/tabs.png&quot; height=&quot;700px&quot; width=&quot;350px&quot; /&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;android.support.v7.widget.Toolbar xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:background=&quot;@color/primary&quot;
+    android:minHeight=&quot;?attr/actionBarSize&quot;
+    android:paddingTop=&quot;@dimen/appbar_top_padding&quot;
+    app:popupTheme=&quot;@style/ThemeOverlay.AppCompat.Light&quot;
+    app:theme=&quot;@style/ThemeOverlay.AppCompat.Dark&quot;&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/android.support.v7.widget.Toolbar&amp;gt;
+&amp;lt;/code&amp;gt;
 &lt;b&gt;Then came material tabs&lt;/b&gt;
 For my lazy fellas we gotta head over to our browsers for two major classes, Mr. &lt;code&gt;SlidingTabLayout.java&lt;/code&gt; and Mrs.&lt;code&gt;SlidingTabStrip.java&lt;/code&gt;.
 I like to get mine from Google IO app &lt;a href=&quot;https://github.com/google/iosched/tree/master/android/src/main/java/com/google/samples/apps/iosched/ui/widget&quot;&gt;Here&lt;/a&gt; but you can also get them elsewhere. There is no rule that you should get them from somewhere but my laziness tells me so. 

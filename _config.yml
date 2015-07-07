@@ -1,6 +1,6 @@
 # Dependencies
 markdown:         kramdown
-pygments:     	  pygments
+highlighter:     	  pygments
 
 pages_list:       
   About: '/about'
