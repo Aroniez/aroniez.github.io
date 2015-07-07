@@ -1,12 +1,10 @@
 ---
 layout: post
 title: Material Tabs Revisited
-comments: true
 ---
 This isn't a detailed tutorial on how to implement material tabs but just a quick revisit on'em. 
 I assume you've created your project and everything is well set. Head over <a href="http://www.materialpalette.com/">Materialpallte</a> for awesome color choices and download an xml type of colors.
 
-</p>
 <p>With Toolbar aboard in replacement of ActionBar, lets start by adding it to our new layout. roughly that would translate to something like this.</p>
 <code>&lt;android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -134,6 +132,6 @@ Lets make this baby to walk on its own.
 	slidingTabLayout.setViewPager(viewPager);
 </code></pre>
 <p>Easy right, Keep it simple Stupid (KISS).
-	This was my first post and it's probably terrible. Too bad there ain't comment section, but if you feel like sharing something with me, ronolikeaaron@gmail.com is my mail. Cheers!
+	This was my first post and it's probably terrible. Cheers!
 </p>
 
