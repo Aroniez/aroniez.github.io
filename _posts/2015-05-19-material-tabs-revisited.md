@@ -146,7 +146,7 @@ Lets make this baby to walk on its own.
 	slidingTabLayout.setDistributeEvenly(true);
 	slidingTabLayout.setViewPager(viewPager);
 </code></pre>
-<p>Easy right, Keep it simple Stupid (KISS).
+<p>
 	This was my first post and it's probably terrible. Cheers!
 </p>
 
