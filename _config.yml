@@ -1,6 +1,6 @@
 # Dependencies
-markdown:         kramdown
-highlighter:      pygments
+markdown:         redcarpet
+highlighter:      rouge
 
 pages_list:       
   About: '/about'
