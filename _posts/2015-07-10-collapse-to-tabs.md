@@ -54,5 +54,19 @@ The new <a href="https://developer.android.com/tools/support-library/features.ht
     </android.support.design.widget.AppBarLayout>
 
 	</android.support.design.widget.CoordinatorLayout>
-~~~cpp
+~~~
 
+
+<p>
+	
+Notice that <code>Toolbar</code> has an attribute <code>app:layout_scrollFlags="scroll|enterAlways"</code>. 
+The <code>scroll</code> feature means that the <code>Toolbar</code> will be scrolling off the screen during upscrolling while the <code>enterAlways</code> means that it will 'enter' to its initial place during downscrolling. Hiding animations, when to hide and when to 'reveal' are all taken care of by the library.
+</p>
+<p>Tabs do scroll up and down but never 'disappear. This is done but using the following attributes</p>
+~~~cpp
+	app:layout_collapseMode="pin"
+    app:layout_scrollFlags="enterAlways
+~~~
+
+<p>The former feature means that the tabs will be 'pinned' on top when scrolling upwards</p>
+<p>And thats all</p>
