@@ -1,5 +1,5 @@
 # Dependencies
-markdown:         redcarpet
+markdown:         kramdown
 highlighter:      rouge
 
 pages_list:       
@@ -18,7 +18,7 @@ title:            Aaron Rono
 tagline:          'An Android Enthusiast'
 description:      'Up next...Story of my life'
 url:              http://hyde.getpoole.com
-baseurl:          http://aroniez.github.io/
+baseurl:          
 
 author:
   name:           'Aaron Rono'
@@ -32,5 +32,5 @@ version:          2.1.0
 encoding:         utf-8
 
 github:
-  repo:           https://github.com/Aroniez/aroniez.github.io
+  repo:           https://github.com/Aroniez
   
