@@ -136,11 +136,11 @@ in the <code>getItem(int position)</code> method, you can get fragments by,
         }
 ~~~
 </p>
-<p>So far we've done nearly everything. The last lap is to switch the circuit on and watch</p>
-<p><strong>Let there be magic...</strong></p>
+<p>So far we've done nearly everything.</p>
+<p><strong>Finally...</strong></p>
 <p>
 Lets make this baby to walk on its own.
-	Pull over from adapter and head to <code>MainActivity.java</code>, assuming that's the correct class and add the following</p>
+	Open <code>MainActivity.java</code>, assuming that's the correct class and add the following</p>
 <pre><code>MaterialTabsAdapter myFragmentAdapter = new MaterialTabsAdapter(getSupportFragmentManager());   
 	viewPager.setAdapter(myFragmentAdapter);
 	slidingTabLayout.setDistributeEvenly(true);

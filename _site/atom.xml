@@ -4,7 +4,7 @@
  <title>Aaron Rono</title>
  <link href="http://hyde.getpoole.com/atom.xml" rel="self"/>
  <link href="http://hyde.getpoole.com/"/>
- <updated>2015-07-15T23:54:55+03:00</updated>
+ <updated>2015-07-15T23:56:47+03:00</updated>
  <id>http://hyde.getpoole.com</id>
  <author>
    <name>Aaron Rono</name>
@@ -221,11 +221,11 @@ in the &lt;code&gt;getItem(int position)&lt;/code&gt; method, you can get fragme
         }
 ~~~
 &lt;/p&gt;
-&lt;p&gt;So far we&#39;ve done nearly everything. The last lap is to switch the circuit on and watch&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Let there be magic...&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;So far we&#39;ve done nearly everything.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Finally...&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;
 Lets make this baby to walk on its own.
-	Pull over from adapter and head to &lt;code&gt;MainActivity.java&lt;/code&gt;, assuming that&#39;s the correct class and add the following&lt;/p&gt;
+	Open &lt;code&gt;MainActivity.java&lt;/code&gt;, assuming that&#39;s the correct class and add the following&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;MaterialTabsAdapter myFragmentAdapter = new MaterialTabsAdapter(getSupportFragmentManager());   
 	viewPager.setAdapter(myFragmentAdapter);
 	slidingTabLayout.setDistributeEvenly(true);
