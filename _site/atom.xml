@@ -4,7 +4,7 @@
  <title>Aaron Rono</title>
  <link href="http://hyde.getpoole.com/atom.xml" rel="self"/>
  <link href="http://hyde.getpoole.com/"/>
- <updated>2015-07-15T22:24:58+03:00</updated>
+ <updated>2015-07-15T22:32:46+03:00</updated>
  <id>http://hyde.getpoole.com</id>
  <author>
    <name>Aaron Rono</name>
@@ -17,60 +17,36 @@
    <link href="http://hyde.getpoole.com/2015/07/10/collapse-to-tabs/"/>
    <updated>2015-07-10T00:00:00+03:00</updated>
    <id>http://hyde.getpoole.com/2015/07/10/collapse-to-tabs</id>
-   <content type="html">&lt;p&gt;&lt;img src=&quot;public/images/collapsetabs.gif&quot;&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;img src=&quot;public/images/collapsetabs.gif&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;The new &lt;a href=&quot;https://developer.android.com/tools/support-library/features.html&quot;&gt;Material design support library&lt;/a&gt; basically handles this feature. This is by the use of the &lt;code&gt;CoordinatedLayout&lt;/code&gt; which can take any interactions like drags, swipes, flings, or any other gestures.
+&lt;p&gt;The new &lt;a href=&quot;https://developer.android.com/tools/support-library/features.html&quot;&gt;Material design support library&lt;/a&gt; basically handles this feature. This is by the use of the &lt;code&gt;CoordinatedLayout&lt;/code&gt; which can take any interactions like drags, swipes, flings, or any other gestures.&lt;/p&gt;
 &lt;p&gt;When it comes to handling collapse to tabs on scrolling, &lt;code&gt;CoordinatedLayout&lt;/code&gt; is placed as the root as follow&lt;/p&gt;
 &lt;p&gt;
-    ~~~cpp&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;&amp;lt;android.support.design.widget.CoordinatorLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
-xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-android:id=&quot;@+id/coordinator&quot;
-android:layout_width=&quot;match_parent&quot;
-android:layout_height=&quot;match_parent&quot;
-tools:context=&quot;android.aaron.com.material.ui.CollapseToToolbarActivity&quot;&amp;gt;
+	~~~cpp
 
-&amp;lt;android.support.v4.view.ViewPager
-    android:id=&quot;@+id/pager&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;
-    app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot;&amp;gt;
+	&lt;android.support.design.widget.coordinatorlayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot; xmlns:tools=&quot;http://schemas.android.com/tools&quot; android:id=&quot;@+id/coordinator&quot; android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;match_parent&quot; tools:context=&quot;android.aaron.com.material.ui.CollapseToToolbarActivity&quot;&gt;
 
-&amp;lt;/android.support.v4.view.ViewPager&amp;gt;
+    &lt;android.support.v4.view.viewpager android:id=&quot;@+id/pager&quot; android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;match_parent&quot; app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot;&gt;
 
-&amp;lt;android.support.design.widget.AppBarLayout
-    android:id=&quot;@+id/appBarLayout&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;wrap_content&quot;&amp;gt;
+    &lt;/android.support.v4.view.viewpager&gt;
 
-    &amp;lt;android.support.v7.widget.Toolbar
-        android:id=&quot;@+id/toolbar&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;?attr/actionBarSize&quot;
-        android:background=&quot;@color/primary&quot;
-        android:minHeight=&quot;?attr/actionBarSize&quot;
-        app:layout_scrollFlags=&quot;scroll|enterAlways&quot;
-        app:popupTheme=&quot;@style/ThemeOverlay.AppCompat.Light&quot;
-        app:theme=&quot;@style/ThemeOverlay.AppCompat.Dark&quot;&amp;gt;
+    &lt;android.support.design.widget.appbarlayout android:id=&quot;@+id/appBarLayout&quot; android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;wrap_content&quot;&gt;
 
-    &amp;lt;/android.support.v7.widget.Toolbar&amp;gt;
+        &lt;android.support.v7.widget.toolbar android:id=&quot;@+id/toolbar&quot; android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;?attr/actionBarSize&quot; android:background=&quot;@color/primary&quot; android:minheight=&quot;?attr/actionBarSize&quot; app:layout_scrollflags=&quot;scroll|enterAlways&quot; app:popuptheme=&quot;@style/ThemeOverlay.AppCompat.Light&quot; app:theme=&quot;@style/ThemeOverlay.AppCompat.Dark&quot;&gt;
 
-    &amp;lt;android.support.design.widget.TabLayout
-        android:id=&quot;@+id/tabLayout&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;?attr/actionBarSize&quot;
-        app:layout_collapseMode=&quot;pin&quot;
-        app:layout_scrollFlags=&quot;enterAlways&quot;
-       &amp;gt;
-    &amp;lt;/android.support.design.widget.TabLayout&amp;gt;
+        &lt;/android.support.v7.widget.toolbar&gt;
 
-&amp;lt;/android.support.design.widget.AppBarLayout&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;/android.support.design.widget.CoordinatorLayout&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;~~~cpp
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;/p&gt;&lt;/p&gt;
+        &lt;android.support.design.widget.tablayout android:id=&quot;@+id/tabLayout&quot; android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;?attr/actionBarSize&quot; app:layout_collapsemode=&quot;pin&quot; app:layout_scrollflags=&quot;enterAlways&quot;&gt;
+        &lt;/android.support.design.widget.tablayout&gt;
+
+    &lt;/android.support.design.widget.appbarlayout&gt;
+
+&lt;/android.support.design.widget.coordinatorlayout&gt;
+
+	~~~cpp
+
+	
+&lt;/p&gt;
 </content>
  </entry>
  
@@ -79,59 +55,56 @@ tools:context=&quot;android.aaron.com.material.ui.CollapseToToolbarActivity&quot
    <link href="http://hyde.getpoole.com/2015/05/19/material-tabs-revisited/"/>
    <updated>2015-05-19T00:00:00+03:00</updated>
    <id>http://hyde.getpoole.com/2015/05/19/material-tabs-revisited</id>
-   <content type="html">&lt;p&gt;This isn&amp;#39;t a detailed tutorial on how to implement material tabs but just a quick revisit on&amp;#39;em. 
-I assume you&amp;#39;ve created your project and everything is well set. Head over &lt;a href=&quot;http://www.materialpalette.com/&quot;&gt;Materialpallte&lt;/a&gt; for awesome color choices and download an xml type of colors.&lt;/p&gt;
+   <content type="html">&lt;p&gt;This isn’t a detailed tutorial on how to implement material tabs but just a quick revisit on’em. 
+I assume you’ve created your project and everything is well set. Head over &lt;a href=&quot;http://www.materialpalette.com/&quot;&gt;Materialpallte&lt;/a&gt; for awesome color choices and download an xml type of colors.&lt;/p&gt;
 
 &lt;p&gt;With Toolbar aboard in replacement of ActionBar, lets start by adding it to our new layout. roughly that would translate to something like this.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;android.support.v7.widget.Toolbar xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:background=&quot;@color/primary&quot;
+    android:minHeight=&quot;?attr/actionBarSize&quot;
+    android:paddingTop=&quot;@dimen/appbar_top_padding&quot;
+    app:popupTheme=&quot;@style/ThemeOverlay.AppCompat.Light&quot;
+    app:theme=&quot;@style/ThemeOverlay.AppCompat.Dark&quot;&amp;gt;&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;&amp;lt;android.support.v7.widget.Toolbar xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;
-    xmlns:app=&amp;quot;http://schemas.android.com/apk/res-auto&amp;quot;
-    android:layout&lt;em&gt;width=&amp;quot;match&lt;/em&gt;parent&amp;quot;
-    android:layout&lt;em&gt;height=&amp;quot;wrap&lt;/em&gt;content&amp;quot;
-    android:background=&amp;quot;@color/primary&amp;quot;
-    android:minHeight=&amp;quot;?attr/actionBarSize&amp;quot;
-    android:paddingTop=&amp;quot;@dimen/appbar&lt;em&gt;top&lt;/em&gt;padding&amp;quot;
-    app:popupTheme=&amp;quot;@style/ThemeOverlay.AppCompat.Light&amp;quot;
-    app:theme=&amp;quot;@style/ThemeOverlay.AppCompat.Dark&amp;quot;&amp;gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;/android.support.v7.widget.Toolbar&gt;
-&lt;/code&gt;
+&lt;p&gt;&amp;lt;/android.support.v7.widget.Toolbar&amp;gt;
+&amp;lt;/code&amp;gt;
 &lt;b&gt;Then came material tabs&lt;/b&gt;
 For my lazy fellas we gotta head over to our browsers for two major classes, Mr. &lt;code&gt;SlidingTabLayout.java&lt;/code&gt; and Mrs.&lt;code&gt;SlidingTabStrip.java&lt;/code&gt;.
 I like to get mine from Google IO app &lt;a href=&quot;https://github.com/google/iosched/tree/master/android/src/main/java/com/google/samples/apps/iosched/ui/widget&quot;&gt;Here&lt;/a&gt; but you can also get them elsewhere. There is no rule that you should get them from somewhere but my laziness tells me so. 
-Their names are self explanatory so lets see what happens under the hood.
+Their names are self explanatory so lets see what happens under the hood.&lt;/p&gt;
 &lt;p&gt;With no error nearby, head over to &lt;code&gt;xml&lt;/code&gt; and add some lines
 first, add SlidingTabLayout just below &lt;code&gt;Toolbar&lt;/code&gt;. snippet for SlidingTablayout goes like this
 &lt;p&gt;
 &lt;code&gt;&amp;lt;android.aaron.com.material.tabs.SlidingTabLayout
-            android:id=&amp;quot;@+id/tabs&amp;quot;
-            android:layout&lt;em&gt;width=&amp;quot;match&lt;/em&gt;parent&amp;quot;
-            android:layout&lt;em&gt;height=&amp;quot;wrap&lt;/em&gt;content&amp;quot;
-            android:background=&amp;quot;@color/primary&amp;quot;&amp;gt;
+            android:id=&quot;@+id/tabs&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:background=&quot;@color/primary&quot;&amp;gt;
   &amp;lt;/android.aaron.com.material.tabs.SlidingTabLayout&amp;gt;&lt;/code&gt;
-    &lt;/p&gt;&lt;/p&gt;
+	&lt;/p&gt;
 
-&lt;p&gt;but watch out for the package name in &lt;code&gt;android.aaron.com.material.tabs.SlidingTabLayout&lt;/code&gt;. Make sure you replace it with your package.&lt;/p&gt;
 
-&lt;p&gt;Now add &lt;code&gt;Viewpager&lt;/code&gt; below them. Something like
+but watch out for the package name in &lt;code&gt;android.aaron.com.material.tabs.SlidingTabLayout&lt;/code&gt;. Make sure you replace it with your package.
+
+Now add &lt;code&gt;Viewpager&lt;/code&gt; below them. Something like
 &lt;p&gt;
 &lt;code&gt; &amp;lt;android.support.v4.view.ViewPager
-                android:id=&amp;quot;@+id/pager&amp;quot;
-                android:layout&lt;em&gt;width=&amp;quot;match&lt;/em&gt;parent&amp;quot;
-                android:layout&lt;em&gt;height=&amp;quot;match&lt;/em&gt;parent&amp;quot;
-                android:layout_alignParentTop=&amp;quot;true&amp;quot;&amp;gt;
+                android:id=&quot;@+id/pager&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;match_parent&quot;
+                android:layout_alignParentTop=&quot;true&quot;&amp;gt;
             &amp;lt;/android.support.v4.view.ViewPager&amp;gt;&lt;/code&gt;
             &lt;/p&gt;
-&lt;/p&gt;&lt;/p&gt;
+&lt;/p&gt;
 
 &lt;p&gt;With xml ready to rock and roll, head back to java&lt;/p&gt;
-
 &lt;p&gt;Start by doing the &lt;code&gt;findViewById()&lt;/code&gt; thing or use &lt;a href=&quot;http://jakewharton.github.io/butterknife/&quot;&gt;Butterknife&lt;/a&gt; if you are farmiliar with it (You should actually use the later...). So far so good? Thats what I thought.&lt;/p&gt;
-
 &lt;p&gt;&lt;strong&gt;Them Fragments&lt;/strong&gt;&lt;/p&gt;
-
 &lt;p&gt;I was thinking of using one fragment but then why not create seperate ones for diffrent purpose. Lets say we wanna create something like this... 
-&lt;img src=&quot;public/images/tabs.png&quot; height=&quot;700px&quot; width=&quot;350px&quot;&gt;
+&lt;img src=&quot;public/images/tabs.png&quot; height=&quot;700px&quot; width=&quot;350px&quot; /&gt;
 &lt;p&gt;Create three fragments. A simple fragment class looks like this
 &lt;pre&gt;&lt;code&gt;public class PageTwo extends Fragment {
 
@@ -151,33 +124,32 @@ first, add SlidingTabLayout just below &lt;code&gt;Toolbar&lt;/code&gt;. snippet
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
+&lt;/p&gt;
 &lt;p&gt;&lt;b&gt;Mr Adapter, where you at?&lt;/b&gt;&lt;/p&gt;
 &lt;p&gt;Create a class, name it something like MaterialTabsAdapter or something not weird. With simplicity kept constant, extend &lt;code&gt;FragmentPagerAdapter&lt;/code&gt;
 in the &lt;code&gt;getItem(int position)&lt;/code&gt; method, you can get fragments by,
 &lt;pre&gt;&lt;code&gt;
  @Override
-    public Fragment getItem(int position) {&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;    Fragment fragment;
-    switch (position) {
-        case 0:
-            fragment = new PageOne();
-            return fragment;
+    public Fragment getItem(int position) {
+      
+        Fragment fragment;
+        switch (position) {
+            case 0:
+                fragment = new PageOne();
+                return fragment;
 
-        case 1:
-            fragment = new PageThree();
-            return fragment;
-        case 2:
-            fragment = new PageTwo();
-            return fragment;
-        default:
-            fragment = new PageOne();
-            return fragment;
+            case 1:
+                fragment = new PageThree();
+                return fragment;
+            case 2:
+                fragment = new PageTwo();
+                return fragment;
+            default:
+                fragment = new PageOne();
+                return fragment;
+        }
     }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;/code&gt;
+&lt;/code&gt;
 &lt;/pre&gt;
 &lt;p&gt;This means that when we are in a particular page we load a particular fragment&lt;/p&gt;
 &lt;p&gt;
@@ -185,36 +157,38 @@ in the &lt;code&gt;getItem(int position)&lt;/code&gt; method, you can get fragme
     public int getCount() {
         //The number of fragments we got
         return 3;
-    }&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;@Override
-public CharSequence getPageTitle(int position) {
-    //Sample titles for our tabs
-    if (position == 0) {
-        return &quot;Movies&quot;;
-    } else if (position == 1) {
-        return &quot;Series&quot;;
-    } else if (position == 2) {
-        return &quot;Films&quot;;
     }
-    return &quot;&quot;;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;/code&gt;
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        //Sample titles for our tabs
+        if (position == 0) {
+            return &quot;Movies&quot;;
+        } else if (position == 1) {
+            return &quot;Series&quot;;
+        } else if (position == 2) {
+            return &quot;Films&quot;;
+        }
+        return &quot;&quot;;
+    }
+&lt;/code&gt;
 &lt;/pre&gt;
 &lt;/p&gt;
-&lt;p&gt;So far we&amp;#39;ve done nearly everything. The last lap is to switch the circuit on and watch&lt;/p&gt;
+&lt;p&gt;So far we&#39;ve done nearly everything. The last lap is to switch the circuit on and watch&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Let there be magic...&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;
 Lets make this baby to walk on its own.
-    Pull over from adapter and head to &lt;code&gt;MainActivity.java&lt;/code&gt;, assuming that&amp;#39;s the correct class and add the following&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;MaterialTabsAdapter myFragmentAdapter = new MaterialTabsAdapter(getSupportFragmentManager());&lt;br&gt;
-    viewPager.setAdapter(myFragmentAdapter);
-    slidingTabLayout.setDistributeEvenly(true);
-    slidingTabLayout.setViewPager(viewPager);
+	Pull over from adapter and head to &lt;code&gt;MainActivity.java&lt;/code&gt;, assuming that&#39;s the correct class and add the following&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;MaterialTabsAdapter myFragmentAdapter = new MaterialTabsAdapter(getSupportFragmentManager());   
+	viewPager.setAdapter(myFragmentAdapter);
+	slidingTabLayout.setDistributeEvenly(true);
+	slidingTabLayout.setViewPager(viewPager);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Easy right, Keep it simple Stupid (KISS).
-    This was my first post and it&amp;#39;s probably terrible. Cheers!
-&lt;/p&gt;&lt;/p&gt;
+	This was my first post and it&#39;s probably terrible. Cheers!
+&lt;/p&gt;
+
+&lt;/p&gt;
 </content>
  </entry>
  
