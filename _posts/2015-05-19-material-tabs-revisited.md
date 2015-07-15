@@ -6,7 +6,9 @@ This isn't a detailed tutorial on how to implement material tabs but just a quic
 I assume you've created your project and everything is well set. Head over <a href="http://www.materialpalette.com/">Materialpallte</a> for awesome color choices and download an xml type of colors.
 
 <p>With Toolbar aboard in replacement of ActionBar, lets start by adding it to our new layout. roughly that would translate to something like this.</p>
-<code>&lt;android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+~~~cpp
+
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -14,10 +16,11 @@ I assume you've created your project and everything is well set. Head over <a hr
     android:minHeight="?attr/actionBarSize"
     android:paddingTop="@dimen/appbar_top_padding"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-    app:theme="@style/ThemeOverlay.AppCompat.Dark"&gt;
-
+    app:theme="@style/ThemeOverlay.AppCompat.Dark">
 </android.support.v7.widget.Toolbar>
-</code>
+
+~~~cpp
+
 <b>Then came material tabs</b>
 For my lazy fellas we gotta head over to our browsers for two major classes, Mr. <code>SlidingTabLayout.java</code> and Mrs.<code>SlidingTabStrip.java</code>.
 I like to get mine from Google IO app <a href="https://github.com/google/iosched/tree/master/android/src/main/java/com/google/samples/apps/iosched/ui/widget">Here</a> but you can also get them elsewhere. There is no rule that you should get them from somewhere but my laziness tells me so. 

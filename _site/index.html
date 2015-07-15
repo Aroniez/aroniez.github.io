@@ -16,14 +16,14 @@
   </title>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="aroniez.github.iopublic/css/poole.css">
-  <link rel="stylesheet" href="aroniez.github.iopublic/css/syntax.css">
-  <link rel="stylesheet" href="aroniez.github.iopublic/css/hyde.css">
+  <link rel="stylesheet" href="public/css/poole.css">
+  <link rel="stylesheet" href="public/css/syntax.css">
+  <link rel="stylesheet" href="public/css/hyde.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   <!-- Icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="aroniez.github.iopublic/apple-touch-icon-144-precomposed.png">
-                                 <link rel="shortcut icon" href="aroniez.github.iopublic/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="public/favicon.ico">
 
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
@@ -46,7 +46,7 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       <h1>
-        <a href="aroniez.github.io">
+        <a href="">
           Aaron Rono
         </a>
       </h1>
@@ -54,7 +54,7 @@
     </div>
 
     <nav class="sidebar-nav">
-      <a class="sidebar-nav-item" href="aroniez.github.io">Home</a>
+      <a class="sidebar-nav-item" href="">Home</a>
 
       
 
@@ -124,58 +124,55 @@
     <p><img src="public/images/collapsetabs.gif"></p>
 
 <p>The new <a href="https://developer.android.com/tools/support-library/features.html">Material design support library</a> basically handles this feature. This is by the use of the <code>CoordinatedLayout</code> which can take any interactions like drags, swipes, flings, or any other gestures.
-<p>When it comes to handling collapse to tabs on scrolling, <code>CoordinatedLayout</code> is placed as the root as follow</p>
-<p>
-    ~~~cpp</p>
-<div class="highlight"><pre><code class="language-" data-lang="">&lt;android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/coordinator"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context="android.aaron.com.material.ui.CollapseToToolbarActivity"&gt;
+<p>When it comes to handling collapse to tabs on scrolling, <code>CoordinatedLayout</code> is placed as the root as follow</p></p>
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp">    <span class="o">&lt;</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">design</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">CoordinatorLayout</span> 
+        <span class="n">xmlns</span><span class="o">:</span><span class="n">android</span><span class="o">=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+        <span class="n">xmlns</span><span class="o">:</span><span class="n">app</span><span class="o">=</span><span class="s">"http://schemas.android.com/apk/res-auto"</span>
+        <span class="n">xmlns</span><span class="o">:</span><span class="n">tools</span><span class="o">=</span><span class="s">"http://schemas.android.com/tools"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">id</span><span class="o">=</span><span class="s">"@+id/coordinator"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s">"match_parent"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s">"match_parent"</span>
+        <span class="n">tools</span><span class="o">:</span><span class="n">context</span><span class="o">=</span><span class="s">"android.aaron.com.material.ui.CollapseToToolbarActivity"</span><span class="o">&gt;</span>
 
-&lt;android.support.v4.view.ViewPager
-    android:id="@+id/pager"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"&gt;
+    <span class="o">&lt;</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">v4</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">ViewPager</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">id</span><span class="o">=</span><span class="s">"@+id/pager"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s">"match_parent"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s">"match_parent"</span>
+        <span class="n">app</span><span class="o">:</span><span class="n">layout_behavior</span><span class="o">=</span><span class="s">"@string/appbar_scrolling_view_behavior"</span><span class="o">&gt;</span>
 
-&lt;/android.support.v4.view.ViewPager&gt;
+    <span class="o">&lt;/</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">v4</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">ViewPager</span><span class="o">&gt;</span>
 
-&lt;android.support.design.widget.AppBarLayout
-    android:id="@+id/appBarLayout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"&gt;
+    <span class="o">&lt;</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">design</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">AppBarLayout</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">id</span><span class="o">=</span><span class="s">"@+id/appBarLayout"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s">"match_parent"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s">"wrap_content"</span><span class="o">&gt;</span>
 
-    &lt;android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/primary"
-        android:minHeight="?attr/actionBarSize"
-        app:layout_scrollFlags="scroll|enterAlways"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark"&gt;
+        <span class="o">&lt;</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">v7</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">Toolbar</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">id</span><span class="o">=</span><span class="s">"@+id/toolbar"</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s">"match_parent"</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s">"?attr/actionBarSize"</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">background</span><span class="o">=</span><span class="s">"@color/primary"</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">minHeight</span><span class="o">=</span><span class="s">"?attr/actionBarSize"</span>
+            <span class="n">app</span><span class="o">:</span><span class="n">layout_scrollFlags</span><span class="o">=</span><span class="s">"scroll|enterAlways"</span>
+            <span class="n">app</span><span class="o">:</span><span class="n">popupTheme</span><span class="o">=</span><span class="s">"@style/ThemeOverlay.AppCompat.Light"</span>
+            <span class="n">app</span><span class="o">:</span><span class="n">theme</span><span class="o">=</span><span class="s">"@style/ThemeOverlay.AppCompat.Dark"</span><span class="o">&gt;</span>
 
-    &lt;/android.support.v7.widget.Toolbar&gt;
+        <span class="o">&lt;/</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">v7</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">Toolbar</span><span class="o">&gt;</span>
 
-    &lt;android.support.design.widget.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_collapseMode="pin"
-        app:layout_scrollFlags="enterAlways"
-       &gt;
-    &lt;/android.support.design.widget.TabLayout&gt;
+        <span class="o">&lt;</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">design</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">TabLayout</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">id</span><span class="o">=</span><span class="s">"@+id/tabLayout"</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s">"match_parent"</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s">"?attr/actionBarSize"</span>
+            <span class="n">app</span><span class="o">:</span><span class="n">layout_collapseMode</span><span class="o">=</span><span class="s">"pin"</span>
+            <span class="n">app</span><span class="o">:</span><span class="n">layout_scrollFlags</span><span class="o">=</span><span class="s">"enterAlways"</span>
+           <span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">design</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">TabLayout</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">design</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">AppBarLayout</span><span class="o">&gt;</span>
 
-&lt;/android.support.design.widget.AppBarLayout&gt;
+    <span class="o">&lt;/</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">design</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">CoordinatorLayout</span><span class="o">&gt;</span>
+<span class="o">~~~</span><span class="n">cpp</span>
+
 </code></pre></div>
-<p></android.support.design.widget.CoordinatorLayout></p>
-<div class="highlight"><pre><code class="language-" data-lang="">~~~cpp
-</code></pre></div>
-<p></p></p>
-
   </div>
   
   <div class="post">
@@ -191,139 +188,138 @@ tools:context="android.aaron.com.material.ui.CollapseToToolbarActivity"&gt;
 I assume you&#39;ve created your project and everything is well set. Head over <a href="http://www.materialpalette.com/">Materialpallte</a> for awesome color choices and download an xml type of colors.</p>
 
 <p>With Toolbar aboard in replacement of ActionBar, lets start by adding it to our new layout. roughly that would translate to something like this.</p>
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp">
+<span class="o">&lt;</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">v7</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">Toolbar</span> <span class="n">xmlns</span><span class="o">:</span><span class="n">android</span><span class="o">=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+    <span class="n">xmlns</span><span class="o">:</span><span class="n">app</span><span class="o">=</span><span class="s">"http://schemas.android.com/apk/res-auto"</span>
+    <span class="n">android</span><span class="o">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s">"match_parent"</span>
+    <span class="n">android</span><span class="o">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s">"wrap_content"</span>
+    <span class="n">android</span><span class="o">:</span><span class="n">background</span><span class="o">=</span><span class="s">"@color/primary"</span>
+    <span class="n">android</span><span class="o">:</span><span class="n">minHeight</span><span class="o">=</span><span class="s">"?attr/actionBarSize"</span>
+    <span class="n">android</span><span class="o">:</span><span class="n">paddingTop</span><span class="o">=</span><span class="s">"@dimen/appbar_top_padding"</span>
+    <span class="n">app</span><span class="o">:</span><span class="n">popupTheme</span><span class="o">=</span><span class="s">"@style/ThemeOverlay.AppCompat.Light"</span>
+    <span class="n">app</span><span class="o">:</span><span class="n">theme</span><span class="o">=</span><span class="s">"@style/ThemeOverlay.AppCompat.Dark"</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">v7</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">Toolbar</span><span class="o">&gt;</span>
 
-<p><code>&lt;android.support.v7.widget.Toolbar xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
-    android:layout<em>width=&quot;match</em>parent&quot;
-    android:layout<em>height=&quot;wrap</em>content&quot;
-    android:background=&quot;@color/primary&quot;
-    android:minHeight=&quot;?attr/actionBarSize&quot;
-    android:paddingTop=&quot;@dimen/appbar<em>top</em>padding&quot;
-    app:popupTheme=&quot;@style/ThemeOverlay.AppCompat.Light&quot;
-    app:theme=&quot;@style/ThemeOverlay.AppCompat.Dark&quot;&gt;</p>
+<span class="o">~~~</span><span class="n">cpp</span>
 
-<p></android.support.v7.widget.Toolbar>
-</code>
-<b>Then came material tabs</b>
-For my lazy fellas we gotta head over to our browsers for two major classes, Mr. <code>SlidingTabLayout.java</code> and Mrs.<code>SlidingTabStrip.java</code>.
-I like to get mine from Google IO app <a href="https://github.com/google/iosched/tree/master/android/src/main/java/com/google/samples/apps/iosched/ui/widget">Here</a> but you can also get them elsewhere. There is no rule that you should get them from somewhere but my laziness tells me so. 
-Their names are self explanatory so lets see what happens under the hood.
-<p>With no error nearby, head over to <code>xml</code> and add some lines
-first, add SlidingTabLayout just below <code>Toolbar</code>. snippet for SlidingTablayout goes like this
-<p>
-<code>&lt;android.aaron.com.material.tabs.SlidingTabLayout
-            android:id=&quot;@+id/tabs&quot;
-            android:layout<em>width=&quot;match</em>parent&quot;
-            android:layout<em>height=&quot;wrap</em>content&quot;
-            android:background=&quot;@color/primary&quot;&gt;
-  &lt;/android.aaron.com.material.tabs.SlidingTabLayout&gt;</code>
-    </p></p>
+<span class="o">&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Then</span> <span class="n">came</span> <span class="n">material</span> <span class="n">tabs</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span>
+<span class="n">For</span> <span class="n">my</span> <span class="n">lazy</span> <span class="n">fellas</span> <span class="n">we</span> <span class="n">gotta</span> <span class="n">head</span> <span class="n">over</span> <span class="n">to</span> <span class="n">our</span> <span class="n">browsers</span> <span class="k">for</span> <span class="n">two</span> <span class="n">major</span> <span class="n">classes</span><span class="p">,</span> <span class="n">Mr</span><span class="p">.</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">SlidingTabLayout</span><span class="p">.</span><span class="n">java</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">and</span> <span class="n">Mrs</span><span class="p">.</span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">SlidingTabStrip</span><span class="p">.</span><span class="n">java</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="p">.</span>
+<span class="n">I</span> <span class="n">like</span> <span class="n">to</span> <span class="n">get</span> <span class="n">mine</span> <span class="n">from</span> <span class="n">Google</span> <span class="n">IO</span> <span class="n">app</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s">"https://github.com/google/iosched/tree/master/android/src/main/java/com/google/samples/apps/iosched/ui/widget"</span><span class="o">&gt;</span><span class="n">Here</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">but</span> <span class="n">you</span> <span class="n">can</span> <span class="n">also</span> <span class="n">get</span> <span class="n">them</span> <span class="n">elsewhere</span><span class="p">.</span> <span class="n">There</span> <span class="n">is</span> <span class="n">no</span> <span class="n">rule</span> <span class="n">that</span> <span class="n">you</span> <span class="n">should</span> <span class="n">get</span> <span class="n">them</span> <span class="n">from</span> <span class="n">somewhere</span> <span class="n">but</span> <span class="n">my</span> <span class="n">laziness</span> <span class="n">tells</span> <span class="n">me</span> <span class="n">so</span><span class="p">.</span> 
+<span class="n">Their</span> <span class="n">names</span> <span class="n">are</span> <span class="n">self</span> <span class="n">explanatory</span> <span class="n">so</span> <span class="n">lets</span> <span class="n">see</span> <span class="n">what</span> <span class="n">happens</span> <span class="n">under</span> <span class="n">the</span> <span class="n">hood</span><span class="p">.</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">With</span> <span class="n">no</span> <span class="n">error</span> <span class="n">nearby</span><span class="p">,</span> <span class="n">head</span> <span class="n">over</span> <span class="n">to</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">xml</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">and</span> <span class="n">add</span> <span class="n">some</span> <span class="n">lines</span>
+<span class="n">first</span><span class="p">,</span> <span class="n">add</span> <span class="n">SlidingTabLayout</span> <span class="n">just</span> <span class="n">below</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Toolbar</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="p">.</span> <span class="n">snippet</span> <span class="k">for</span> <span class="n">SlidingTablayout</span> <span class="n">goes</span> <span class="n">like</span> <span class="k">this</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">android</span><span class="p">.</span><span class="n">aaron</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="n">material</span><span class="p">.</span><span class="n">tabs</span><span class="p">.</span><span class="n">SlidingTabLayout</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">id</span><span class="o">=</span><span class="s">"@+id/tabs"</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s">"match_parent"</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s">"wrap_content"</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">background</span><span class="o">=</span><span class="s">"@color/primary"</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span>
+  <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">/</span><span class="n">android</span><span class="p">.</span><span class="n">aaron</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="n">material</span><span class="p">.</span><span class="n">tabs</span><span class="p">.</span><span class="n">SlidingTabLayout</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 
-<p>but watch out for the package name in <code>android.aaron.com.material.tabs.SlidingTabLayout</code>. Make sure you replace it with your package.</p>
 
-<p>Now add <code>Viewpager</code> below them. Something like
-<p>
-<code> &lt;android.support.v4.view.ViewPager
-                android:id=&quot;@+id/pager&quot;
-                android:layout<em>width=&quot;match</em>parent&quot;
-                android:layout<em>height=&quot;match</em>parent&quot;
-                android:layout_alignParentTop=&quot;true&quot;&gt;
-            &lt;/android.support.v4.view.ViewPager&gt;</code>
-            </p>
-</p></p>
+<span class="n">but</span> <span class="n">watch</span> <span class="n">out</span> <span class="k">for</span> <span class="n">the</span> <span class="n">package</span> <span class="n">name</span> <span class="n">in</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">android</span><span class="p">.</span><span class="n">aaron</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="n">material</span><span class="p">.</span><span class="n">tabs</span><span class="p">.</span><span class="n">SlidingTabLayout</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="p">.</span> <span class="n">Make</span> <span class="n">sure</span> <span class="n">you</span> <span class="n">replace</span> <span class="n">it</span> <span class="n">with</span> <span class="n">your</span> <span class="n">package</span><span class="p">.</span>
 
-<p>With xml ready to rock and roll, head back to java</p>
+<span class="n">Now</span> <span class="n">add</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Viewpager</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">below</span> <span class="n">them</span><span class="p">.</span> <span class="n">Something</span> <span class="n">like</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">v4</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">ViewPager</span>
+                <span class="n">android</span><span class="o">:</span><span class="n">id</span><span class="o">=</span><span class="s">"@+id/pager"</span>
+                <span class="n">android</span><span class="o">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s">"match_parent"</span>
+                <span class="n">android</span><span class="o">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s">"match_parent"</span>
+                <span class="n">android</span><span class="o">:</span><span class="n">layout_alignParentTop</span><span class="o">=</span><span class="s">"true"</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span>
+            <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">/</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">v4</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">ViewPager</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 
-<p>Start by doing the <code>findViewById()</code> thing or use <a href="http://jakewharton.github.io/butterknife/">Butterknife</a> if you are farmiliar with it (You should actually use the later...). So far so good? Thats what I thought.</p>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">With</span> <span class="n">xml</span> <span class="n">ready</span> <span class="n">to</span> <span class="n">rock</span> <span class="n">and</span> <span class="n">roll</span><span class="p">,</span> <span class="n">head</span> <span class="n">back</span> <span class="n">to</span> <span class="n">java</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Start</span> <span class="n">by</span> <span class="n">doing</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">findViewById</span><span class="p">()</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">thing</span> <span class="n">or</span> <span class="n">use</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s">"http://jakewharton.github.io/butterknife/"</span><span class="o">&gt;</span><span class="n">Butterknife</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="k">if</span> <span class="n">you</span> <span class="n">are</span> <span class="n">farmiliar</span> <span class="n">with</span> <span class="n">it</span> <span class="p">(</span><span class="n">You</span> <span class="n">should</span> <span class="n">actually</span> <span class="n">use</span> <span class="n">the</span> <span class="n">later</span><span class="p">...).</span> <span class="n">So</span> <span class="n">far</span> <span class="n">so</span> <span class="n">good</span><span class="o">?</span> <span class="n">Thats</span> <span class="n">what</span> <span class="n">I</span> <span class="n">thought</span><span class="p">.</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">Them</span> <span class="n">Fragments</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">I</span> <span class="n">was</span> <span class="n">thinking</span> <span class="n">of</span> <span class="k">using</span> <span class="n">one</span> <span class="n">fragment</span> <span class="n">but</span> <span class="n">then</span> <span class="n">why</span> <span class="n">not</span> <span class="n">create</span> <span class="n">seperate</span> <span class="n">ones</span> <span class="k">for</span> <span class="n">diffrent</span> <span class="n">purpose</span><span class="p">.</span> <span class="n">Lets</span> <span class="n">say</span> <span class="n">we</span> <span class="n">wanna</span> <span class="n">create</span> <span class="n">something</span> <span class="n">like</span> <span class="k">this</span><span class="p">...</span> 
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s">"public/images/tabs.png"</span> <span class="n">height</span><span class="o">=</span><span class="s">"700px"</span> <span class="n">width</span><span class="o">=</span><span class="s">"350px"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Create</span> <span class="n">three</span> <span class="n">fragments</span><span class="p">.</span> <span class="n">A</span> <span class="n">simple</span> <span class="n">fragment</span> <span class="k">class</span> <span class="nc">looks</span> <span class="n">like</span> <span class="k">this</span>
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">public</span> <span class="k">class</span> <span class="nc">PageTwo</span> <span class="n">extends</span> <span class="n">Fragment</span> <span class="p">{</span>
 
-<p><strong>Them Fragments</strong></p>
+    <span class="k">public</span> <span class="n">PageTwo</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Required empty public constructor
+</span>    <span class="p">}</span>
 
-<p>I was thinking of using one fragment but then why not create seperate ones for diffrent purpose. Lets say we wanna create something like this... 
-<img src="public/images/tabs.png" height="700px" width="350px">
-<p>Create three fragments. A simple fragment class looks like this
-<pre><code>public class PageTwo extends Fragment {
+    <span class="err">@</span><span class="n">Override</span>
+    <span class="k">public</span> <span class="n">View</span> <span class="n">onCreateView</span><span class="p">(</span><span class="n">LayoutInflater</span> <span class="n">inflater</span><span class="p">,</span> <span class="n">ViewGroup</span> <span class="n">container</span><span class="p">,</span>
+                             <span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Inflate the layout for this fragment
+</span>        <span class="n">View</span> <span class="n">view</span> <span class="o">=</span> <span class="n">inflater</span><span class="p">.</span><span class="n">inflate</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">fragment_page_two</span><span class="p">,</span> <span class="n">container</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">view</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    public PageTwo() {
-        // Required empty public constructor
-    }
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Mr</span> <span class="n">Adapter</span><span class="p">,</span> <span class="n">where</span> <span class="n">you</span> <span class="n">at</span><span class="o">?&lt;/</span><span class="n">b</span><span class="o">&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Create</span> <span class="n">a</span> <span class="k">class</span><span class="err">,</span> <span class="nc">name</span> <span class="n">it</span> <span class="n">something</span> <span class="n">like</span> <span class="n">MaterialTabsAdapter</span> <span class="n">or</span> <span class="n">something</span> <span class="n">not</span> <span class="n">weird</span><span class="p">.</span> <span class="n">With</span> <span class="n">simplicity</span> <span class="n">kept</span> <span class="n">constant</span><span class="p">,</span> <span class="n">extend</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">FragmentPagerAdapter</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span>
+<span class="n">in</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">getItem</span><span class="p">(</span><span class="kt">int</span> <span class="n">position</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">method</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">get</span> <span class="n">fragments</span> <span class="n">by</span><span class="p">,</span>
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>
+ <span class="err">@</span><span class="n">Override</span>
+    <span class="k">public</span> <span class="n">Fragment</span> <span class="n">getItem</span><span class="p">(</span><span class="kt">int</span> <span class="n">position</span><span class="p">)</span> <span class="p">{</span>
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_page_two, container, false);
-        return view;
-    }
+        <span class="n">Fragment</span> <span class="n">fragment</span><span class="p">;</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="n">position</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">fragment</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PageOne</span><span class="p">();</span>
+                <span class="k">return</span> <span class="n">fragment</span><span class="p">;</span>
 
-    }
-}
-</code></pre>
-</p>
+            <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">fragment</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PageThree</span><span class="p">();</span>
+                <span class="k">return</span> <span class="n">fragment</span><span class="p">;</span>
+            <span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">fragment</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PageTwo</span><span class="p">();</span>
+                <span class="k">return</span> <span class="n">fragment</span><span class="p">;</span>
+            <span class="k">default</span><span class="o">:</span>
+                <span class="n">fragment</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PageOne</span><span class="p">();</span>
+                <span class="k">return</span> <span class="n">fragment</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">This</span> <span class="n">means</span> <span class="n">that</span> <span class="n">when</span> <span class="n">we</span> <span class="n">are</span> <span class="n">in</span> <span class="n">a</span> <span class="n">particular</span> <span class="n">page</span> <span class="n">we</span> <span class="n">load</span> <span class="n">a</span> <span class="n">particular</span> <span class="n">fragment</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span> <span class="err">@</span><span class="n">Override</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">getCount</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//The number of fragments we got
+</span>        <span class="k">return</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="p">}</span>
 
-<p></p>
-<p><b>Mr Adapter, where you at?</b></p>
-<p>Create a class, name it something like MaterialTabsAdapter or something not weird. With simplicity kept constant, extend <code>FragmentPagerAdapter</code>
-in the <code>getItem(int position)</code> method, you can get fragments by,
-<pre><code>
- @Override
-    public Fragment getItem(int position) {</p>
-<div class="highlight"><pre><code class="language-" data-lang="">    Fragment fragment;
-    switch (position) {
-        case 0:
-            fragment = new PageOne();
-            return fragment;
+    <span class="err">@</span><span class="n">Override</span>
+    <span class="k">public</span> <span class="n">CharSequence</span> <span class="n">getPageTitle</span><span class="p">(</span><span class="kt">int</span> <span class="n">position</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//Sample titles for our tabs
+</span>        <span class="k">if</span> <span class="p">(</span><span class="n">position</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="s">"Movies"</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">position</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="s">"Series"</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">position</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="s">"Films"</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="s">""</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">So</span> <span class="n">far</span> <span class="n">we</span><span class="err">'</span><span class="n">ve</span> <span class="n">done</span> <span class="n">nearly</span> <span class="n">everything</span><span class="p">.</span> <span class="n">The</span> <span class="n">last</span> <span class="n">lap</span> <span class="n">is</span> <span class="n">to</span> <span class="k">switch</span> <span class="n">the</span> <span class="n">circuit</span> <span class="n">on</span> <span class="n">and</span> <span class="n">watch</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">Let</span> <span class="n">there</span> <span class="n">be</span> <span class="n">magic</span><span class="p">...</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="n">Lets</span> <span class="n">make</span> <span class="k">this</span> <span class="n">baby</span> <span class="n">to</span> <span class="n">walk</span> <span class="n">on</span> <span class="n">its</span> <span class="n">own</span><span class="p">.</span>
+    <span class="n">Pull</span> <span class="n">over</span> <span class="n">from</span> <span class="n">adapter</span> <span class="n">and</span> <span class="n">head</span> <span class="n">to</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">MainActivity</span><span class="p">.</span><span class="n">java</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">assuming</span> <span class="n">that</span><span class="err">'</span><span class="n">s</span> <span class="n">the</span> <span class="n">correct</span> <span class="k">class</span> <span class="nc">and</span> <span class="n">add</span> <span class="n">the</span> <span class="n">following</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">MaterialTabsAdapter</span> <span class="n">myFragmentAdapter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MaterialTabsAdapter</span><span class="p">(</span><span class="n">getSupportFragmentManager</span><span class="p">());</span>   
+    <span class="n">viewPager</span><span class="p">.</span><span class="n">setAdapter</span><span class="p">(</span><span class="n">myFragmentAdapter</span><span class="p">);</span>
+    <span class="n">slidingTabLayout</span><span class="p">.</span><span class="n">setDistributeEvenly</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+    <span class="n">slidingTabLayout</span><span class="p">.</span><span class="n">setViewPager</span><span class="p">(</span><span class="n">viewPager</span><span class="p">);</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Easy</span> <span class="n">right</span><span class="p">,</span> <span class="n">Keep</span> <span class="n">it</span> <span class="n">simple</span> <span class="n">Stupid</span> <span class="p">(</span><span class="n">KISS</span><span class="p">).</span>
+    <span class="n">This</span> <span class="n">was</span> <span class="n">my</span> <span class="n">first</span> <span class="n">post</span> <span class="n">and</span> <span class="n">it</span><span class="err">'</span><span class="n">s</span> <span class="n">probably</span> <span class="n">terrible</span><span class="p">.</span> <span class="n">Cheers</span><span class="o">!</span>
+<span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 
-        case 1:
-            fragment = new PageThree();
-            return fragment;
-        case 2:
-            fragment = new PageTwo();
-            return fragment;
-        default:
-            fragment = new PageOne();
-            return fragment;
-    }
-}
 </code></pre></div>
-<p></code>
-</pre>
-<p>This means that when we are in a particular page we load a particular fragment</p>
-<p>
-<pre><code> @Override
-    public int getCount() {
-        //The number of fragments we got
-        return 3;
-    }</p>
-<div class="highlight"><pre><code class="language-" data-lang="">@Override
-public CharSequence getPageTitle(int position) {
-    //Sample titles for our tabs
-    if (position == 0) {
-        return "Movies";
-    } else if (position == 1) {
-        return "Series";
-    } else if (position == 2) {
-        return "Films";
-    }
-    return "";
-}
-</code></pre></div>
-<p></code>
-</pre>
-</p>
-<p>So far we&#39;ve done nearly everything. The last lap is to switch the circuit on and watch</p>
-<p><strong>Let there be magic...</strong></p>
-<p>
-Lets make this baby to walk on its own.
-    Pull over from adapter and head to <code>MainActivity.java</code>, assuming that&#39;s the correct class and add the following</p>
-<pre><code>MaterialTabsAdapter myFragmentAdapter = new MaterialTabsAdapter(getSupportFragmentManager());<br>
-    viewPager.setAdapter(myFragmentAdapter);
-    slidingTabLayout.setDistributeEvenly(true);
-    slidingTabLayout.setViewPager(viewPager);
-</code></pre>
-<p>Easy right, Keep it simple Stupid (KISS).
-    This was my first post and it&#39;s probably terrible. Cheers!
-</p></p>
-
   </div>
   
 </div>
