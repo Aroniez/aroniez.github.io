@@ -63,6 +63,7 @@ I assume you've created your project and everything is well set. Head over <a hr
 <img src="public/images/tabs.png" height="700px" width="350px">
 <p>Create three fragments. A simple fragment class looks like this
 </p>
+
 ~~~cpp
 
     public class PageTwo extends Fragment {
@@ -80,8 +81,8 @@ I assume you've created your project and everything is well set. Head over <a hr
 
         }
     }
-
 ~~~
+
 </p>
 </p>
 <p><b>Mr Adapter, where you at?</b></p>
@@ -90,7 +91,7 @@ in the <code>getItem(int position)</code> method, you can get fragments by,
 
 ~~~cpp
 
- @Override
+    @Override
     public Fragment getItem(int position) {
       
         Fragment fragment;
@@ -111,6 +112,7 @@ in the <code>getItem(int position)</code> method, you can get fragments by,
         }
     }
 ~~~
+
 <p>This means that when we are in a particular page we load a particular fragment</p>
 <p>
 
@@ -133,8 +135,10 @@ in the <code>getItem(int position)</code> method, you can get fragments by,
                 return "Films";
             }
             return "";
-        }
+    }
+    
 ~~~
+
 </p>
 <p>So far we've done nearly everything.</p>
 <p><strong>Finally...</strong></p>
