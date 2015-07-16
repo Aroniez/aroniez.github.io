@@ -59,35 +59,32 @@ I assume you've created your project and everything is well set. Head over <a hr
 
 <p><strong>Them Fragments</strong></p>
 
-<p>I was thinking of using one fragment but then why not create seperate ones for diffrent purpose. Lets say we wanna create something like this... 
+<p>I was thinking of using one fragment but then why not create seperate ones for diffrent purpose. Lets say we wanna create something like this... </p>
 <img src="public/images/tabs.png" height="700px" width="350px">
-<p>Create three fragments. A simple fragment class looks like this
-</p>
+<p>Create three fragments. A simple fragment class looks like this </p>
 
 ~~~cpp
 
-    public class PageTwo extends Fragment {
-        public PageTwo() {
-            // Required empty public constructor
-        }
+        public class PageTwo extends Fragment {
+            public PageTwo() {
+                // Required empty public constructor
+            }
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            // Inflate the layout for this fragment
-            View view = inflater.inflate(R.layout.fragment_page_two, container, false);
-            return view;
-        }
+            @Override
+            public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                     Bundle savedInstanceState) {
+                // Inflate the layout for this fragment
+                View view = inflater.inflate(R.layout.fragment_page_two, container, false);
+                return view;
+            }
 
+            }
         }
-    }
 ~~~
 
-</p>
-</p>
 <p><b>Mr Adapter, where you at?</b></p>
 <p>Create a class, name it something like MaterialTabsAdapter or something not weird. With simplicity kept constant, extend <code>FragmentPagerAdapter</code>
-in the <code>getItem(int position)</code> method, you can get fragments by,
+in the <code>getItem(int position)</code> method, you can get fragments by, </p>
 
 ~~~cpp
 
@@ -114,7 +111,6 @@ in the <code>getItem(int position)</code> method, you can get fragments by,
 ~~~
 
 <p>This means that when we are in a particular page we load a particular fragment</p>
-<p>
 
 ~~~cpp
 
@@ -136,10 +132,9 @@ in the <code>getItem(int position)</code> method, you can get fragments by,
             }
             return "";
     }
-    
+
 ~~~
 
-</p>
 <p>So far we've done nearly everything.</p>
 <p><strong>Finally...</strong></p>
 <p>

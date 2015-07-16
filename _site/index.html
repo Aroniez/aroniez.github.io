@@ -252,38 +252,34 @@ Now add &lt;code&gt;Viewpager&lt;/code&gt; below them. Something like
 
 <p><strong>Them Fragments</strong></p>
 
-<p>I was thinking of using one fragment but then why not create seperate ones for diffrent purpose. Lets say we wanna create something like this... 
-<img src="public/images/tabs.png" height="700px" width="350px" />
-<p>Create three fragments. A simple fragment class looks like this
-</p>
-~~~cpp
+<p>I was thinking of using one fragment but then why not create seperate ones for diffrent purpose. Lets say we wanna create something like this... </p>
+<p><img src="public/images/tabs.png" height="700px" width="350px" /></p>
+<p>Create three fragments. A simple fragment class looks like this </p>
 
-    public class PageTwo extends Fragment {
-        public PageTwo() {
-            // Required empty public constructor
+<pre><code class="language-cpp">
+        public class PageTwo extends Fragment {
+            public PageTwo() {
+                // Required empty public constructor
+            }
+
+            @Override
+            public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                     Bundle savedInstanceState) {
+                // Inflate the layout for this fragment
+                View view = inflater.inflate(R.layout.fragment_page_two, container, false);
+                return view;
+            }
+
+            }
         }
+</code></pre>
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            // Inflate the layout for this fragment
-            View view = inflater.inflate(R.layout.fragment_page_two, container, false);
-            return view;
-        }
-
-        }
-    }
-
-~~~
-</p>
-<p>&lt;/p&gt;</p>
 <p><b>Mr Adapter, where you at?</b></p>
 <p>Create a class, name it something like MaterialTabsAdapter or something not weird. With simplicity kept constant, extend <code>FragmentPagerAdapter</code>
-in the <code>getItem(int position)</code> method, you can get fragments by,
+in the <code>getItem(int position)</code> method, you can get fragments by, </p>
 
-~~~cpp
-
- @Override
+<pre><code class="language-cpp">
+    @Override
     public Fragment getItem(int position) {
       
         Fragment fragment;
@@ -303,12 +299,11 @@ in the <code>getItem(int position)</code> method, you can get fragments by,
                 return fragment;
         }
     }
-~~~
+</code></pre>
+
 <p>This means that when we are in a particular page we load a particular fragment</p>
-<p>
 
-~~~cpp
-
+<pre><code class="language-cpp">
     @Override
         public int getCount() {
             //The number of fragments we got
@@ -326,9 +321,10 @@ in the <code>getItem(int position)</code> method, you can get fragments by,
                 return "Films";
             }
             return "";
-        }
-~~~
-</p>
+    }
+
+</code></pre>
+
 <p>So far we've done nearly everything.</p>
 <p><strong>Finally...</strong></p>
 <p>
@@ -343,7 +339,6 @@ Lets make this baby to walk on its own.
 	This was my first post and it's probably terrible. Cheers!
 </p>
 
-</p>
 
   </div>
   

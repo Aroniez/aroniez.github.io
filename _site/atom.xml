@@ -4,7 +4,7 @@
  <title>Aaron Rono</title>
  <link href="http://hyde.getpoole.com/atom.xml" rel="self"/>
  <link href="http://hyde.getpoole.com/"/>
- <updated>2015-07-15T23:56:47+03:00</updated>
+ <updated>2015-07-16T22:40:25+03:00</updated>
  <id>http://hyde.getpoole.com</id>
  <author>
    <name>Aaron Rono</name>
@@ -144,38 +144,34 @@ Now add &amp;lt;code&amp;gt;Viewpager&amp;lt;/code&amp;gt; below them. Something
 
 &lt;p&gt;&lt;strong&gt;Them Fragments&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;I was thinking of using one fragment but then why not create seperate ones for diffrent purpose. Lets say we wanna create something like this... 
-&lt;img src=&quot;public/images/tabs.png&quot; height=&quot;700px&quot; width=&quot;350px&quot; /&gt;
-&lt;p&gt;Create three fragments. A simple fragment class looks like this
-&lt;/p&gt;
-~~~cpp
+&lt;p&gt;I was thinking of using one fragment but then why not create seperate ones for diffrent purpose. Lets say we wanna create something like this... &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;public/images/tabs.png&quot; height=&quot;700px&quot; width=&quot;350px&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Create three fragments. A simple fragment class looks like this &lt;/p&gt;
 
-    public class PageTwo extends Fragment {
-        public PageTwo() {
-            // Required empty public constructor
+&lt;pre&gt;&lt;code class=&quot;language-cpp&quot;&gt;
+        public class PageTwo extends Fragment {
+            public PageTwo() {
+                // Required empty public constructor
+            }
+
+            @Override
+            public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                     Bundle savedInstanceState) {
+                // Inflate the layout for this fragment
+                View view = inflater.inflate(R.layout.fragment_page_two, container, false);
+                return view;
+            }
+
+            }
         }
+&lt;/code&gt;&lt;/pre&gt;
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            // Inflate the layout for this fragment
-            View view = inflater.inflate(R.layout.fragment_page_two, container, false);
-            return view;
-        }
-
-        }
-    }
-
-~~~
-&lt;/p&gt;
-&lt;p&gt;&amp;lt;/p&amp;gt;&lt;/p&gt;
 &lt;p&gt;&lt;b&gt;Mr Adapter, where you at?&lt;/b&gt;&lt;/p&gt;
 &lt;p&gt;Create a class, name it something like MaterialTabsAdapter or something not weird. With simplicity kept constant, extend &lt;code&gt;FragmentPagerAdapter&lt;/code&gt;
-in the &lt;code&gt;getItem(int position)&lt;/code&gt; method, you can get fragments by,
+in the &lt;code&gt;getItem(int position)&lt;/code&gt; method, you can get fragments by, &lt;/p&gt;
 
-~~~cpp
-
- @Override
+&lt;pre&gt;&lt;code class=&quot;language-cpp&quot;&gt;
+    @Override
     public Fragment getItem(int position) {
       
         Fragment fragment;
@@ -195,12 +191,11 @@ in the &lt;code&gt;getItem(int position)&lt;/code&gt; method, you can get fragme
                 return fragment;
         }
     }
-~~~
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;This means that when we are in a particular page we load a particular fragment&lt;/p&gt;
-&lt;p&gt;
 
-~~~cpp
-
+&lt;pre&gt;&lt;code class=&quot;language-cpp&quot;&gt;
     @Override
         public int getCount() {
             //The number of fragments we got
@@ -218,9 +213,10 @@ in the &lt;code&gt;getItem(int position)&lt;/code&gt; method, you can get fragme
                 return &quot;Films&quot;;
             }
             return &quot;&quot;;
-        }
-~~~
-&lt;/p&gt;
+    }
+
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;So far we&#39;ve done nearly everything.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Finally...&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;
@@ -235,7 +231,6 @@ Lets make this baby to walk on its own.
 	This was my first post and it&#39;s probably terrible. Cheers!
 &lt;/p&gt;
 
-&lt;/p&gt;
 </content>
  </entry>
  
