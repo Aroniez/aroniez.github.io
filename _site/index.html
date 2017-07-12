@@ -16,14 +16,14 @@
   </title>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="public/css/poole.css">
-  <link rel="stylesheet" href="public/css/syntax.css">
-  <link rel="stylesheet" href="public/css/hyde.css">
+  <link rel="stylesheet" href="http://aroniez.github.io/public/css/poole.css">
+  <link rel="stylesheet" href="http://aroniez.github.io/public/css/syntax.css">
+  <link rel="stylesheet" href="http://aroniez.github.io/public/css/hyde.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   <!-- Icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
-                                 <link rel="shortcut icon" href="public/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://aroniez.github.io/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="http://aroniez.github.io/public/favicon.ico">
 
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
@@ -46,7 +46,7 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       <h1>
-        <a href="">
+        <a href="http://aroniez.github.io/">
           Aaron Rono
         </a>
       </h1>
@@ -54,7 +54,7 @@
     </div>
 
     <nav class="sidebar-nav">
-      <a class="sidebar-nav-item" href="">Home</a>
+      <a class="sidebar-nav-item" href="http://aroniez.github.io/">Home</a>
 
       
 
@@ -82,13 +82,15 @@
           
         
       
+        
+      
 
-      <a class="sidebar-nav-item" href="https://github.com/Aroniez/archive/v2.1.0.zip">Download</a>
-      <a class="sidebar-nav-item" href="https://github.com/Aroniez">GitHub project</a>
+      <a class="sidebar-nav-item" href="/archive/v2.1.0.zip">Download</a>
+      <a class="sidebar-nav-item" href="">GitHub project</a>
       <span class="sidebar-nav-item">Currently v2.1.0</span>
     </nav>
 
-    <p>&copy; 2015. All rights reserved.</p>
+    <p>&copy; 2017. All rights reserved.</p>
   </div>
 </div>
 
@@ -126,52 +128,53 @@
 <p>The new <a href="https://developer.android.com/tools/support-library/features.html">Material design support library</a> basically handles this feature. This is by the use of the <code>CoordinatedLayout</code> which can take any interactions like drags, swipes, flings, or any other gestures.</p>
 <p>When it comes to handling collapse to tabs on scrolling, <code>CoordinatedLayout</code> is placed as the root as follow</p>
 
-<pre><code class="language-cpp">	&lt;android.support.design.widget.CoordinatorLayout 
-		xmlns:android="http://schemas.android.com/apk/res/android"
-	    xmlns:app="http://schemas.android.com/apk/res-auto"
-	    xmlns:tools="http://schemas.android.com/tools"
-	    android:id="@+id/coordinator"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    tools:context="android.aaron.com.material.ui.CollapseToToolbarActivity"&gt;
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>	<span class="o">&lt;</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">design</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">CoordinatorLayout</span> 
+		<span class="n">xmlns</span><span class="o">:</span><span class="n">android</span><span class="o">=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+	    <span class="n">xmlns</span><span class="o">:</span><span class="n">app</span><span class="o">=</span><span class="s">"http://schemas.android.com/apk/res-auto"</span>
+	    <span class="n">xmlns</span><span class="o">:</span><span class="n">tools</span><span class="o">=</span><span class="s">"http://schemas.android.com/tools"</span>
+	    <span class="n">android</span><span class="o">:</span><span class="n">id</span><span class="o">=</span><span class="s">"@+id/coordinator"</span>
+	    <span class="n">android</span><span class="o">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s">"match_parent"</span>
+	    <span class="n">android</span><span class="o">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s">"match_parent"</span>
+	    <span class="n">tools</span><span class="o">:</span><span class="n">context</span><span class="o">=</span><span class="s">"android.aaron.com.material.ui.CollapseToToolbarActivity"</span><span class="o">&gt;</span>
 
-    &lt;android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"&gt;
+    <span class="o">&lt;</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">v4</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">ViewPager</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">id</span><span class="o">=</span><span class="s">"@+id/pager"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s">"match_parent"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s">"match_parent"</span>
+        <span class="n">app</span><span class="o">:</span><span class="n">layout_behavior</span><span class="o">=</span><span class="s">"@string/appbar_scrolling_view_behavior"</span><span class="o">&gt;</span>
 
-    &lt;/android.support.v4.view.ViewPager&gt;
+    <span class="o">&lt;/</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">v4</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">ViewPager</span><span class="o">&gt;</span>
 
-    &lt;android.support.design.widget.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"&gt;
+    <span class="o">&lt;</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">design</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">AppBarLayout</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">id</span><span class="o">=</span><span class="s">"@+id/appBarLayout"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s">"match_parent"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s">"wrap_content"</span><span class="o">&gt;</span>
 
-        &lt;android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/primary"
-            android:minHeight="?attr/actionBarSize"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark"&gt;
+        <span class="o">&lt;</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">v7</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">Toolbar</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">id</span><span class="o">=</span><span class="s">"@+id/toolbar"</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s">"match_parent"</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s">"?attr/actionBarSize"</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">background</span><span class="o">=</span><span class="s">"@color/primary"</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">minHeight</span><span class="o">=</span><span class="s">"?attr/actionBarSize"</span>
+            <span class="n">app</span><span class="o">:</span><span class="n">layout_scrollFlags</span><span class="o">=</span><span class="s">"scroll|enterAlways"</span>
+            <span class="n">app</span><span class="o">:</span><span class="n">popupTheme</span><span class="o">=</span><span class="s">"@style/ThemeOverlay.AppCompat.Light"</span>
+            <span class="n">app</span><span class="o">:</span><span class="n">theme</span><span class="o">=</span><span class="s">"@style/ThemeOverlay.AppCompat.Dark"</span><span class="o">&gt;</span>
 
-        &lt;/android.support.v7.widget.Toolbar&gt;
+        <span class="o">&lt;/</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">v7</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">Toolbar</span><span class="o">&gt;</span>
 
-        &lt;android.support.design.widget.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_collapseMode="pin"
-            app:layout_scrollFlags="enterAlways"
-           &gt;
-        &lt;/android.support.design.widget.TabLayout&gt;
-    &lt;/android.support.design.widget.AppBarLayout&gt;
+        <span class="o">&lt;</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">design</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">TabLayout</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">id</span><span class="o">=</span><span class="s">"@+id/tabLayout"</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s">"match_parent"</span>
+            <span class="n">android</span><span class="o">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s">"?attr/actionBarSize"</span>
+            <span class="n">app</span><span class="o">:</span><span class="n">layout_collapseMode</span><span class="o">=</span><span class="s">"pin"</span>
+            <span class="n">app</span><span class="o">:</span><span class="n">layout_scrollFlags</span><span class="o">=</span><span class="s">"enterAlways"</span>
+           <span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">design</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">TabLayout</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">design</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">AppBarLayout</span><span class="o">&gt;</span>
 
-	&lt;/android.support.design.widget.CoordinatorLayout&gt;
+	<span class="o">&lt;/</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">design</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">CoordinatorLayout</span><span class="o">&gt;</span>
 </code></pre>
+</div>
 
 <p>
 	
@@ -179,9 +182,10 @@ Notice that <code>Toolbar</code> has an attribute <code>app:layout_scrollFlags="
 The <code>scroll</code> feature means that the <code>Toolbar</code> will be scrolling off the screen during upscrolling while the <code>enterAlways</code> means that it will 'enter' to its initial place during downscrolling. Hiding animations, when to hide and when to 'reveal' are all taken care of by the library.
 </p>
 <p>Tabs do scroll up and down but never 'disappear. This is done but using the following attributes</p>
-<pre><code class="language-cpp">	app:layout_collapseMode="pin"
-    app:layout_scrollFlags="enterAlways
-</code></pre>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>	<span class="nl">app:</span><span class="n">layout_collapseMode</span><span class="o">=</span><span class="s">"pin"</span>
+    <span class="n">app</span><span class="o">:</span><span class="n">layout_scrollFlags</span><span class="o">=</span><span class="s">"enterAlways</span><span class="err">
+</span></code></pre>
+</div>
 
 <p>The former feature means that the tabs will be 'pinned' on top when scrolling upwards</p>
 <p>And thats all</p>
@@ -202,19 +206,20 @@ I assume you’ve created your project and everything is well set. Head over <a 
 
 <p>With Toolbar aboard in replacement of ActionBar, lets start by adding it to our new layout. roughly that would translate to something like this.</p>
 
-<pre><code class="language-cpp">
-    &lt;android.support.v7.widget.Toolbar 
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/primary"
-        android:minHeight="?attr/actionBarSize" 
-        android:paddingTop="@dimen/appbar_top_padding"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark"&gt;
-        &lt;/android.support.v7.widget.Toolbar&gt;
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>
+    <span class="o">&lt;</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">v7</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">Toolbar</span> 
+        <span class="n">xmlns</span><span class="o">:</span><span class="n">android</span><span class="o">=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+        <span class="n">xmlns</span><span class="o">:</span><span class="n">app</span><span class="o">=</span><span class="s">"http://schemas.android.com/apk/res-auto"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s">"match_parent"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s">"wrap_content"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">background</span><span class="o">=</span><span class="s">"@color/primary"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">minHeight</span><span class="o">=</span><span class="s">"?attr/actionBarSize"</span> 
+        <span class="n">android</span><span class="o">:</span><span class="n">paddingTop</span><span class="o">=</span><span class="s">"@dimen/appbar_top_padding"</span>
+        <span class="n">app</span><span class="o">:</span><span class="n">popupTheme</span><span class="o">=</span><span class="s">"@style/ThemeOverlay.AppCompat.Light"</span>
+        <span class="n">app</span><span class="o">:</span><span class="n">theme</span><span class="o">=</span><span class="s">"@style/ThemeOverlay.AppCompat.Dark"</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">v7</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">Toolbar</span><span class="o">&gt;</span>
 </code></pre>
+</div>
 
 <p><b>Then came material tabs</b>
     For my lazy fellas we gotta head over to our browsers for two major classes, Mr. <code>SlidingTabLayout.java</code> and Mrs.<code>SlidingTabStrip.java</code>.
@@ -223,29 +228,32 @@ I assume you’ve created your project and everything is well set. Head over <a 
     With no error nearby, head over to <code>xml</code> and add some lines
     first, add SlidingTabLayout just below <code>Toolbar</code>. snippet for SlidingTablayout goes like this</p>
 
-<pre><code class="language-cpp">
-    &lt;android.aaron.com.material.tabs.SlidingTabLayout
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/primary&gt;
-      &lt;/android.aaron.com.material.tabs.SlidingTabLayout&gt;
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>
+    <span class="o">&lt;</span><span class="n">android</span><span class="p">.</span><span class="n">aaron</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="n">material</span><span class="p">.</span><span class="n">tabs</span><span class="p">.</span><span class="n">SlidingTabLayout</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">id</span><span class="o">=</span><span class="s">"@+id/tabs"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s">"match_parent"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s">"wrap_content"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">background</span><span class="o">=</span><span class="s">"@color/primary&gt;</span><span class="err">
+</span><span class="s">      &lt;/android.aaron.com.material.tabs.SlidingTabLayout&gt;</span><span class="err">
 
-</code></pre>
-<pre><code>&lt;p&gt;
+</span></code></pre>
+</div>
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;p&gt;
 but watch out for the package name in &lt;code&gt;android.aaron.com.material.tabs.SlidingTabLayout&lt;/code&gt;. Make sure you replace it with your package.
 Now add &lt;code&gt;Viewpager&lt;/code&gt; below them. Something like
 </code></pre>
+</div>
 <p>&lt;/p&gt;</p>
 
-<pre><code class="language-cpp">
-    &lt;android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"&gt;
-        &lt;/android.support.v4.view.ViewPager&gt;&lt;/code&gt;
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>
+    <span class="o">&lt;</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">v4</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">ViewPager</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">id</span><span class="o">=</span><span class="s">"@+id/pager"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s">"match_parent"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s">"match_parent"</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">layout_alignParentTop</span><span class="o">=</span><span class="s">"true"</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">android</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">v4</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">ViewPager</span><span class="o">&gt;&lt;/</span><span class="n">code</span><span class="o">&gt;</span>
 </code></pre>
+</div>
 
 <p>With xml ready to rock and roll, head back to java</p>
 <p>Start by doing the <code>findViewById()</code> thing or use <a href="http://jakewharton.github.io/butterknife/">Butterknife</a> if you are farmiliar with it (You should actually use the later...). So far so good? Thats what I thought.</p>
@@ -256,74 +264,77 @@ Now add &lt;code&gt;Viewpager&lt;/code&gt; below them. Something like
 <p><img src="public/images/tabs.png" height="700px" width="350px" /></p>
 <p>Create three fragments. A simple fragment class looks like this </p>
 
-<pre><code class="language-cpp">
-        public class PageTwo extends Fragment {
-            public PageTwo() {
-                // Required empty public constructor
-            }
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>
+        <span class="k">public</span> <span class="k">class</span> <span class="nc">PageTwo</span> <span class="n">extends</span> <span class="n">Fragment</span> <span class="p">{</span>
+            <span class="k">public</span> <span class="n">PageTwo</span><span class="p">()</span> <span class="p">{</span>
+                <span class="c1">// Required empty public constructor
+</span>            <span class="p">}</span>
 
-            @Override
-            public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                     Bundle savedInstanceState) {
-                // Inflate the layout for this fragment
-                View view = inflater.inflate(R.layout.fragment_page_two, container, false);
-                return view;
-            }
+            <span class="err">@</span><span class="n">Override</span>
+            <span class="k">public</span> <span class="n">View</span> <span class="n">onCreateView</span><span class="p">(</span><span class="n">LayoutInflater</span> <span class="n">inflater</span><span class="p">,</span> <span class="n">ViewGroup</span> <span class="n">container</span><span class="p">,</span>
+                                     <span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// Inflate the layout for this fragment
+</span>                <span class="n">View</span> <span class="n">view</span> <span class="o">=</span> <span class="n">inflater</span><span class="p">.</span><span class="n">inflate</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">fragment_page_two</span><span class="p">,</span> <span class="n">container</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+                <span class="k">return</span> <span class="n">view</span><span class="p">;</span>
+            <span class="p">}</span>
 
-            }
-        }
+            <span class="p">}</span>
+        <span class="p">}</span>
 </code></pre>
+</div>
 
 <p><b>Mr Adapter, where you at?</b></p>
 <p>Create a class, name it something like MaterialTabsAdapter or something not weird. With simplicity kept constant, extend <code>FragmentPagerAdapter</code>
 in the <code>getItem(int position)</code> method, you can get fragments by, </p>
 
-<pre><code class="language-cpp">
-    @Override
-    public Fragment getItem(int position) {
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>
+    <span class="err">@</span><span class="n">Override</span>
+    <span class="k">public</span> <span class="n">Fragment</span> <span class="n">getItem</span><span class="p">(</span><span class="kt">int</span> <span class="n">position</span><span class="p">)</span> <span class="p">{</span>
       
-        Fragment fragment;
-        switch (position) {
-            case 0:
-                fragment = new PageOne();
-                return fragment;
+        <span class="n">Fragment</span> <span class="n">fragment</span><span class="p">;</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="n">position</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">fragment</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PageOne</span><span class="p">();</span>
+                <span class="k">return</span> <span class="n">fragment</span><span class="p">;</span>
 
-            case 1:
-                fragment = new PageThree();
-                return fragment;
-            case 2:
-                fragment = new PageTwo();
-                return fragment;
-            default:
-                fragment = new PageOne();
-                return fragment;
-        }
-    }
+            <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">fragment</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PageThree</span><span class="p">();</span>
+                <span class="k">return</span> <span class="n">fragment</span><span class="p">;</span>
+            <span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">fragment</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PageTwo</span><span class="p">();</span>
+                <span class="k">return</span> <span class="n">fragment</span><span class="p">;</span>
+            <span class="k">default</span><span class="o">:</span>
+                <span class="n">fragment</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PageOne</span><span class="p">();</span>
+                <span class="k">return</span> <span class="n">fragment</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 </code></pre>
+</div>
 
 <p>This means that when we are in a particular page we load a particular fragment</p>
 
-<pre><code class="language-cpp">
-    @Override
-        public int getCount() {
-            //The number of fragments we got
-            return 3;
-        }
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>
+    <span class="err">@</span><span class="n">Override</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">getCount</span><span class="p">()</span> <span class="p">{</span>
+            <span class="c1">//The number of fragments we got
+</span>            <span class="k">return</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="p">}</span>
 
-        @Override
-        public CharSequence getPageTitle(int position) {
-            //Sample titles for our tabs
-            if (position == 0) {
-                return "Movies";
-            } else if (position == 1) {
-                return "Series";
-            } else if (position == 2) {
-                return "Films";
-            }
-            return "";
-    }
+        <span class="err">@</span><span class="n">Override</span>
+        <span class="k">public</span> <span class="n">CharSequence</span> <span class="n">getPageTitle</span><span class="p">(</span><span class="kt">int</span> <span class="n">position</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">//Sample titles for our tabs
+</span>            <span class="k">if</span> <span class="p">(</span><span class="n">position</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s">"Movies"</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">position</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s">"Series"</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">position</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s">"Films"</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="s">""</span><span class="p">;</span>
+    <span class="p">}</span>
 
 </code></pre>
+</div>
 
 <p>So far we've done nearly everything.</p>
 <p><strong>Finally...</strong></p>
@@ -354,7 +365,7 @@ Lets make this baby to walk on its own.
 </div>
 	  
 	  If you liked this post, you can
-<a href="https://twitter.com/intent/tweet?url=http://hyde.getpoole.com/&text=Home&via=Aroniez" 
+<a href="https://twitter.com/intent/tweet?url=http://localhost:4000/&text=Home&via=Aroniez" 
    target="_blank">
   share it with your followers</a> 
 or 
@@ -362,7 +373,7 @@ or
   follow me on Twitter</a>!
 	   <div class="footer">
         <p>
-          &copy; 2015. All rights reserved.
+          &copy; 2017. All rights reserved.
         </p>
       </div>
     </div>
