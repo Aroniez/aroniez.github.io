@@ -1,87 +1,253 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.5">Jekyll</generator><link href="http://localhost:4000/http://aroniez.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/http://aroniez.github.io//" rel="alternate" type="text/html" /><updated>2017-07-12T14:40:37+03:00</updated><id>http://localhost:4000/http://aroniez.github.io//</id><title type="html">Aaron Rono</title><subtitle>Up next...Story of my life</subtitle><author><name>Aaron Rono</name></author><entry><title type="html">Collapse to Tabs</title><link href="http://localhost:4000/http://aroniez.github.io//2015/07/10/collapse-to-tabs/" rel="alternate" type="text/html" title="Collapse to Tabs" /><published>2015-07-10T00:00:00+03:00</published><updated>2015-07-10T00:00:00+03:00</updated><id>http://localhost:4000/http://aroniez.github.io//2015/07/10/collapse-to-tabs</id><content type="html" xml:base="http://localhost:4000/http://aroniez.github.io//2015/07/10/collapse-to-tabs/">&lt;p&gt;&lt;img src=&quot;public/images/collapsetabs.gif&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Anthony Intino</title>
+    <description>A place for my thoughts and experiences while learning Android</description>
+    <link>http://int-a.github.io/</link>
+    <atom:link href="http://int-a.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 12 Jul 2017 17:29:33 +0300</pubDate>
+    <lastBuildDate>Wed, 12 Jul 2017 17:29:33 +0300</lastBuildDate>
+    <generator>Jekyll v3.1.1</generator>
+    
+      <item>
+        <title>On the Versatility of RecyclerView</title>
+        <description>&lt;p&gt;RecylerView seems to be the go-to for displaying lists on Android. Of course there are other ways, and some are better than others for certain scenarios, but it’s generally a safe bet that RecyclerView will be a good option. Especially if the data you want to display is fairly complex, or if you want to display the same data in different orientations across your app.&lt;/p&gt;
+
+&lt;p&gt;A RecyclerView is built from a couple key components, the &lt;a href=&quot;https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html&quot;&gt;RecyclerView&lt;/a&gt; View object itself, a &lt;a href=&quot;https://developer.android.com/reference/android/support/v7/widget/RecyclerView.LayoutManager.html&quot;&gt;Layout Manager&lt;/a&gt; (of which there are 3 standard types, and of course, the option to create a custom type), and the &lt;a href=&quot;https://developer.android.com/reference/android/support/v7/widget/RecyclerView.Adapter.html&quot;&gt;Adapter&lt;/a&gt; used to bind the dataset to the RecyclerView.&lt;/p&gt;
+
+&lt;p&gt;The RecyclerView is so efficient because it recycles the  &lt;a href=&quot;https://developer.android.com/reference/android/support/v7/widget/RecyclerView.ViewHolder.html&quot;&gt;ViewHolders&lt;/a&gt; that are used to display the data provided. The RecyclerView will keep a pool of empty ViewHolders, when one is needed it will populate it with data using &lt;a href=&quot;https://developer.android.com/reference/android/support/v7/widget/RecyclerView.Adapter.html#onBindViewHolder(VH, int)&quot;&gt;onBindViewHolder()&lt;/a&gt; method in the adapter. When a ViewHolder is detached (scrolls beyond the users view), it gets added back to the pool of empty ViewHolders. You can use &lt;a href=&quot;https://developer.android.com/reference/android/support/v7/widget/RecyclerView.Adapter.html#onViewRecycled(VH)&quot;&gt;onViewRecycled()&lt;/a&gt; to do some actions when a ViewHolder is recycled, if the View contained a large image that can be set to null to reduce memory usage for example.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://developer.android.com/reference/android/support/v4/view/ViewPager.html&quot;&gt;ViewPager&lt;/a&gt; is another useful component of the Android framework that I had been reading up on recently. A ViewPager is a layout manager that allows the user to flip left and right through a series of tabs or pages, represented by Fragments, displaying different layouts and data in each.&lt;/p&gt;
+
+&lt;p&gt;So I built a quick example app to play around with these two components. The app contains a &lt;a href=&quot;https://github.com/int-a/recylerjsonparsing/blob/master/app/src/main/java/com/inta/anthony/recylerjsonparsing/MainActivity.java&quot;&gt;MainActivity&lt;/a&gt; and a &lt;a href=&quot;https://github.com/int-a/recylerjsonparsing/blob/master/app/src/main/java/com/inta/anthony/recylerjsonparsing/TabbedActivity.java&quot;&gt;TabbedActivity&lt;/a&gt; which will hold the ViewPager. The data used was retrieved from &lt;a href=&quot;http://api.learn2crack.com/android/jsonandroid&quot;&gt;http://api.learn2crack.com/android/jsonandroid&lt;/a&gt; using &lt;a href=&quot;http://square.github.io/retrofit/&quot;&gt;Retrofit&lt;/a&gt;, the JSON returned contains a list of the existing Android versions and their corresponding API levels.&lt;/p&gt;
+
+&lt;p&gt;In the MainActivity I implemented a standard RecyclerView using a &lt;a href=&quot;https://developer.android.com/reference/android/support/v7/widget/LinearLayoutManager.html&quot;&gt;LinearLayout&lt;/a&gt;. LinearLayoutManager allows for two different orientations, horizontal, and vertical. The orientation is passed in as a parameter when creating the LayoutManager. I added a button to toggle between the two orientations. To change the orientation it will inspect the current LinearLayoutManager for the RecyclerView using the &lt;a href=&quot;https://developer.android.com/reference/android/support/v7/widget/LinearLayoutManager.html#getOrientation()&quot;&gt;getOrientation()&lt;/a&gt; method. If the orientation is horizontal it will create a new LinearLayoutManager with the vertical orientation and set the RecyclerView’s LayoutManager to the new instance, and if the orientation is vertical it will do the same thing with a new horizontal LinearLayoutManager.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//Initialize switchLayoutbutton&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;switchLayoutButton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;findViewById&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;switch_layout_button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;switchLayoutButton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setOnClickListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;OnClickListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onClick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Switch layout orientations&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;LinearLayoutManager&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;linearLayoutManager&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LinearLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;recyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linearLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getOrientation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LinearLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;VERTICAL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;RecyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;LayoutManager&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;layoutManager&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;LinearLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LinearLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;HORIZONTAL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;recyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;RecyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;LayoutManager&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;layoutManager&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;LinearLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LinearLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;VERTICAL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;recyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/switch_orientation_demo.gif&quot; alt=&quot;Switch RecyclerView orientation demo gif&quot; width=&quot;350px;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can also reverse the list of items in the layout using the &lt;a href=&quot;https://developer.android.com/reference/android/support/v7/widget/LinearLayoutManager.html#setReverseLayout(boolean)&quot;&gt;setReverseLayout()&lt;/a&gt; method. I added a button to the MainActivity that will do this.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//Initialize reverseLayoutButton&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;reverseLayoutButton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;findViewById&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;reverse_layout_button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;reverseLayoutButton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setOnClickListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;OnClickListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onClick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Switch layout orientations&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;LinearLayoutManager&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;linearLayoutManager&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LinearLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;recyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linearLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getReverseLayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;linearLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setReverseLayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;linearLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setReverseLayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/reverse_list_demo.gif&quot; alt=&quot;Reverse RecyclerView list demo gif&quot; width=&quot;350px;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is really just the tip of the iceberg when it comes to RecyclerView. All of this is done using a single type of LayoutManager, the LinearLayoutManager.&lt;/p&gt;
+
+&lt;p&gt;In the other activity in my app, TabbedActivity, I set up a ViewPager with 3 tabs containing a RecyclerView with a different layout in each. The tabs are represented by a Fragment in the ViewPager, and since each tab in this example will contain the same RecyclerView we can share the same Fragment class. When the user switches tabs the &lt;a href=&quot;link to implementation&quot;&gt;getItem()&lt;/a&gt; method of the ViewPager’s &lt;a href=&quot;https://developer.android.com/reference/android/support/v4/app/FragmentPagerAdapter.html&quot;&gt;FragmentPagerAdapter&lt;/a&gt; is called to return the new instance of the Fragment that needs to be displayed. To create a different layout based on the tab we can pass an argument to the new instance of the Fragment and use that to determine which LayoutManager to be used on the RecyclerView. In my example I set up some constants, 0-2, to represent the 3 tabs, and used a switch statement in the &lt;a href=&quot;link to implementation&quot;&gt;onCreateView()&lt;/a&gt; method where the LayoutManager gets set.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;recyclerView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RecyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rootView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;findViewById&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;card_recyler_view_pager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;recyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setHasFixedSize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Check to see what the layout type should be and create the necessary LayoutManager&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layoutType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;FRAGMENT_LINEAR:&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;RecyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;LayoutManager&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;layoutManager&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;LinearLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LinearLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;VERTICAL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;recyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+       &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;FRAGMENT_GRID:&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;GridLayoutManager&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gridLayoutManager&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;GridLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;recyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gridLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+       &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;FRAGMENT_STAG_GRID:&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;StaggeredGridLayoutManager&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;staggeredGridLayoutManager&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;StaggeredGridLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;StaggeredGridLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;VERTICAL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;recyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;staggeredGridLayoutManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+       &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/viewpager_demo.gif&quot; alt=&quot;ViewPager with RecyclerViews demo gif&quot; width=&quot;350px;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The other two LayoutManager types are &lt;a href=&quot;https://developer.android.com/reference/android/support/v7/widget/GridLayoutManager.html&quot;&gt;GridLayoutManager&lt;/a&gt; and &lt;a href=&quot;https://developer.android.com/reference/android/support/v7/widget/StaggeredGridLayoutManager.html&quot;&gt;StaggeredGridLayoutManager&lt;/a&gt;. These are pretty self-explanatory. The GridLayoutManager will show our CardView items in a grid of columns, the number of which is set with a parameter in the constructor (3 in this example). The StaggeredGridLayoutManager is similar in that is will display a grid of the CardView items but they do not have to be of uniform size, each cell will only be as big as required to fit the data contained in it. This can create some odd spacing when you get to the bottom, this can be handled with the &lt;a href=&quot;https://developer.android.com/reference/android/support/v7/widget/StaggeredGridLayoutManager.html#setGapStrategy(int)&quot;&gt;setGapStrategy()&lt;/a&gt; method, depending on how you want the content displayed if this is an issue with your particular dataset. This can happen when the data in each cell varies a lot in size.&lt;/p&gt;
+
+&lt;p&gt;One thing to note is that the ViewPager by default will also load the tab before and the tab after the currently selected tab. This improves scrolling performance. You can see this in action if you scroll quickly from the Linear, to the Grid, and then to the Staggered tab in the example app. Scrolling from Linear to Grid is fine, the RecylerView in the Grid tab is already loaded with data from the network call. When we quickly scroll from the Grid to the Staggered tab the RecyclerView is not yet hydrated with data and it takes a second for the data to appear.&lt;/p&gt;
+
+&lt;p&gt;The code for this example app can be found &lt;a href=&quot;https://github.com/int-a/recylerjsonparsing&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 26 Jun 2017 23:07:14 +0300</pubDate>
+        <link>http://int-a.github.io/on-the-versatility-of-recyclerview</link>
+        <guid isPermaLink="true">http://int-a.github.io/on-the-versatility-of-recyclerview</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>How ExoPlayer Resumes Video Playback After Loss of Focus</title>
+        <description>&lt;p&gt;After attending the most recent &lt;a href=&quot;https://www.meetup.com/nyandroiddevelopers/&quot;&gt;Android Developers Meetup&lt;/a&gt; in New York City and hearing about ExoPlayer2 (a great talk given by &lt;a href=&quot;https://twitter.com/kylevenn?lang=en&quot;&gt;@kylevenn&lt;/a&gt;!) I really wanted to implement it in my app. ExoPlayer is an alternative to the basic &lt;code&gt;MediaPlayer&lt;/code&gt; provided by the Android framework. In short, ExoPlayer is MUCH more extensible and customizable than &lt;code&gt;MediaPlayer&lt;/code&gt;. The basic building blocks of ExoPlayer, &lt;code&gt;MediaSource&lt;/code&gt; , &lt;code&gt;TrackSelector&lt;/code&gt;, and &lt;code&gt;LoadControl&lt;/code&gt; can call be customized to suit your needs. For more on this check out Google’s &lt;a href=&quot;https://google.github.io/ExoPlayer/guide.html&quot;&gt;ExoPlayer Developer Guide&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For my app I really didn’t need anything too fancy, but I wanted to learn ExoPlayer and get familiar with it. I figured using the default implementations of the various components would be just fine. After implementing the most barebones version of ExoPlayer I quickly realized that when navigating away from my app during video playback and coming back resulted in a black screen, not exactly ideal. I needed the video to resume playing from where I left off.&lt;/p&gt;
+
+&lt;p&gt;Luckily ExoPlayer is open source and also provides a demo application in their repo. So after poking around the &lt;a href=&quot;https://github.com/google/ExoPlayer/blob/release-v2/demo/src/main/java/com/google/android/exoplayer2/demo/PlayerActivity.java&quot;&gt;PlayerActivity&lt;/a&gt; it became apparent how this is done.&lt;/p&gt;
+
+&lt;p&gt;When an Activity is no longer visible to the user the &lt;code&gt;onStop()&lt;/code&gt; method is called, if a user presses the home button, keeping the Activity in memory, then &lt;code&gt;onStop()&lt;/code&gt; is the last event in this callback chain. If the user were to press the back button instead the Activity would be destroyed, calling &lt;code&gt;onDestroy()&lt;/code&gt; and then &lt;code&gt;onCreate()&lt;/code&gt; again when the user goes back to a given Activity, in this case we would not want to save video playback since the user has completely exited the Activity and came back, potentially loading an entirely different video. However, in the case of hitting the Home button it is possible the user simply wanted to check something quick in another app and come back to the video they were watching. Here &lt;code&gt;onDestroy()&lt;/code&gt; and &lt;code&gt;onCreate()&lt;/code&gt; would not be called since the Activity remains in memory.&lt;/p&gt;
+
+&lt;p&gt;In the &lt;code&gt;onStop()&lt;/code&gt; code of &lt;code&gt;PlayerActivity&lt;/code&gt; &lt;code&gt;releasePlayer()&lt;/code&gt; is called.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;releasePlayer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;player&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;debugViewHelper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;stop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;debugViewHelper&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;shouldAutoPlay&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;player&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getPlayWhenReady&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;updateResumePosition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;player&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;release&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;player&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;trackSelector&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;trackSelectionHelper&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;eventLogger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;In &lt;code&gt;releasePlayer()&lt;/code&gt; the &lt;code&gt;updateResumePosition()&lt;/code&gt; method is called.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;updateResumePosition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;resumeWindow&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;player&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getCurrentWindowIndex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;resumePosition&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;player&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isCurrentWindowSeekable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;player&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getCurrentPosition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;TIME_UNSET&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Here the player window and video position are saved to global variables.&lt;/p&gt;
+
+&lt;p&gt;Then, when the Acitivity comes back into the user’s view &lt;code&gt;onStart()&lt;/code&gt; is called, in &lt;code&gt;onStart()&lt;/code&gt; the &lt;code&gt;initializePlayer()&lt;/code&gt; method is called which contains some logic to check the &lt;code&gt;resumeWindow&lt;/code&gt; variable:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;haveResumePosition&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resumeWindow&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;INDEX_UNSET&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;haveResumePosition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;player&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;seekTo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;resumeWindow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resumePosition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This will check &lt;code&gt;resumeWindow&lt;/code&gt; to see if it is not the default value (&lt;a href=&quot;https://google.github.io/ExoPlayer/doc/reference/com/google/android/exoplayer2/C.html#INDEX_UNSET&quot;&gt;C.INDEX_UNSET&lt;/a&gt;) and if not it will load the saved window and seek to the saved position. And that’s it! The video has now been resumed where the user left off.&lt;/p&gt;
+
+&lt;p&gt;Also note that &lt;code&gt;clearResumePosition()&lt;/code&gt; is called in &lt;code&gt;onCreate()&lt;/code&gt; because &lt;code&gt;onCreate()&lt;/code&gt; will only get called again once the Activity gets destroyed and recreated. In this case we do not want to resume playback.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 04 Jun 2017 16:07:14 +0300</pubDate>
+        <link>http://int-a.github.io/how-exoplayer-resumes-video-playback-after-loss-of-focus</link>
+        <guid isPermaLink="true">http://int-a.github.io/how-exoplayer-resumes-video-playback-after-loss-of-focus</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Collapse to Tabs</title>
+        <description>&lt;p&gt;&lt;img src=&quot;public/images/collapsetabs.gif&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The new &lt;a href=&quot;https://developer.android.com/tools/support-library/features.html&quot;&gt;Material design support library&lt;/a&gt; basically handles this feature. This is by the use of the &lt;code&gt;CoordinatedLayout&lt;/code&gt; which can take any interactions like drags, swipes, flings, or any other gestures.&lt;/p&gt;
 &lt;p&gt;When it comes to handling collapse to tabs on scrolling, &lt;code&gt;CoordinatedLayout&lt;/code&gt; is placed as the root as follow&lt;/p&gt;
 
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;design&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;widget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CoordinatorLayout&lt;/span&gt; 
-		&lt;span class=&quot;n&quot;&gt;xmlns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res/android&quot;&lt;/span&gt;
-	    &lt;span class=&quot;n&quot;&gt;xmlns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res-auto&quot;&lt;/span&gt;
-	    &lt;span class=&quot;n&quot;&gt;xmlns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tools&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/tools&quot;&lt;/span&gt;
-	    &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/coordinator&quot;&lt;/span&gt;
-	    &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
-	    &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
-	    &lt;span class=&quot;n&quot;&gt;tools&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;android.aaron.com.material.ui.CollapseToToolbarActivity&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-cpp&quot;&gt;	&amp;lt;android.support.design.widget.CoordinatorLayout 
+		xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+	    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+	    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+	    android:id=&quot;@+id/coordinator&quot;
+	    android:layout_width=&quot;match_parent&quot;
+	    android:layout_height=&quot;match_parent&quot;
+	    tools:context=&quot;android.aaron.com.material.ui.CollapseToToolbarActivity&quot;&amp;gt;
 
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ViewPager&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/pager&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_behavior&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@string/appbar_scrolling_view_behavior&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+    &amp;lt;android.support.v4.view.ViewPager
+        android:id=&quot;@+id/pager&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot;&amp;gt;
 
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ViewPager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+    &amp;lt;/android.support.v4.view.ViewPager&amp;gt;
 
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;design&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;widget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AppBarLayout&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/appBarLayout&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wrap_content&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+    &amp;lt;android.support.design.widget.AppBarLayout
+        android:id=&quot;@+id/appBarLayout&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;&amp;gt;
 
-        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;widget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Toolbar&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/toolbar&quot;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;?attr/actionBarSize&quot;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@color/primary&quot;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;minHeight&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;?attr/actionBarSize&quot;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_scrollFlags&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;scroll|enterAlways&quot;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;popupTheme&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@style/ThemeOverlay.AppCompat.Light&quot;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@style/ThemeOverlay.AppCompat.Dark&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+        &amp;lt;android.support.v7.widget.Toolbar
+            android:id=&quot;@+id/toolbar&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;?attr/actionBarSize&quot;
+            android:background=&quot;@color/primary&quot;
+            android:minHeight=&quot;?attr/actionBarSize&quot;
+            app:layout_scrollFlags=&quot;scroll|enterAlways&quot;
+            app:popupTheme=&quot;@style/ThemeOverlay.AppCompat.Light&quot;
+            app:theme=&quot;@style/ThemeOverlay.AppCompat.Dark&quot;&amp;gt;
 
-        &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;widget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Toolbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+        &amp;lt;/android.support.v7.widget.Toolbar&amp;gt;
 
-        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;design&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;widget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TabLayout&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/tabLayout&quot;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;?attr/actionBarSize&quot;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_collapseMode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pin&quot;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_scrollFlags&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;enterAlways&quot;&lt;/span&gt;
-           &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;design&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;widget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TabLayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;design&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;widget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AppBarLayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+        &amp;lt;android.support.design.widget.TabLayout
+            android:id=&quot;@+id/tabLayout&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;?attr/actionBarSize&quot;
+            app:layout_collapseMode=&quot;pin&quot;
+            app:layout_scrollFlags=&quot;enterAlways&quot;
+           &amp;gt;
+        &amp;lt;/android.support.design.widget.TabLayout&amp;gt;
+    &amp;lt;/android.support.design.widget.AppBarLayout&amp;gt;
 
-	&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;design&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;widget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CoordinatorLayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+	&amp;lt;/android.support.design.widget.CoordinatorLayout&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 
 &lt;p&gt;
 	
 Notice that &lt;code&gt;Toolbar&lt;/code&gt; has an attribute &lt;code&gt;app:layout_scrollFlags=&quot;scroll|enterAlways&quot;&lt;/code&gt;. 
-The &lt;code&gt;scroll&lt;/code&gt; feature means that the &lt;code&gt;Toolbar&lt;/code&gt; will be scrolling off the screen during upscrolling while the &lt;code&gt;enterAlways&lt;/code&gt; means that it will 'enter' to its initial place during downscrolling. Hiding animations, when to hide and when to 'reveal' are all taken care of by the library.
+The &lt;code&gt;scroll&lt;/code&gt; feature means that the &lt;code&gt;Toolbar&lt;/code&gt; will be scrolling off the screen during upscrolling while the &lt;code&gt;enterAlways&lt;/code&gt; means that it will &#39;enter&#39; to its initial place during downscrolling. Hiding animations, when to hide and when to &#39;reveal&#39; are all taken care of by the library.
 &lt;/p&gt;
-&lt;p&gt;Tabs do scroll up and down but never 'disappear. This is done but using the following attributes&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;nl&quot;&gt;app:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_collapseMode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pin&quot;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_scrollFlags&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;enterAlways&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;p&gt;Tabs do scroll up and down but never &#39;disappear. This is done but using the following attributes&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-cpp&quot;&gt;	app:layout_collapseMode=&quot;pin&quot;
+    app:layout_scrollFlags=&quot;enterAlways
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The former feature means that the tabs will be 'pinned' on top when scrolling upwards&lt;/p&gt;
-&lt;p&gt;And thats all&lt;/p&gt;</content><author><name>Aaron Rono</name></author><summary type="html"></summary></entry><entry><title type="html">Material Tabs Revisited</title><link href="http://localhost:4000/http://aroniez.github.io//2015/05/19/material-tabs-revisited/" rel="alternate" type="text/html" title="Material Tabs Revisited" /><published>2015-05-19T00:00:00+03:00</published><updated>2015-05-19T00:00:00+03:00</updated><id>http://localhost:4000/http://aroniez.github.io//2015/05/19/material-tabs-revisited</id><content type="html" xml:base="http://localhost:4000/http://aroniez.github.io//2015/05/19/material-tabs-revisited/">&lt;p&gt;This isn’t a detailed tutorial on how to implement material tabs but just a quick revisit on’em. 
+&lt;p&gt;The former feature means that the tabs will be &#39;pinned&#39; on top when scrolling upwards&lt;/p&gt;
+&lt;p&gt;And thats all&lt;/p&gt;
+</description>
+        <pubDate>Fri, 10 Jul 2015 00:00:00 +0300</pubDate>
+        <link>http://int-a.github.io/blog/2015/collapse-to-tabs/</link>
+        <guid isPermaLink="true">http://int-a.github.io/blog/2015/collapse-to-tabs/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Material Tabs Revisited</title>
+        <description>&lt;p&gt;This isn’t a detailed tutorial on how to implement material tabs but just a quick revisit on’em. 
 I assume you’ve created your project and everything is well set. Head over &lt;a href=&quot;http://www.materialpalette.com/&quot;&gt;Materialpallte&lt;/a&gt; for awesome color choices and download an xml type of colors.&lt;/p&gt;
 
 &lt;p&gt;With Toolbar aboard in replacement of ActionBar, lets start by adding it to our new layout. roughly that would translate to something like this.&lt;/p&gt;
 
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;widget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Toolbar&lt;/span&gt; 
-        &lt;span class=&quot;n&quot;&gt;xmlns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res/android&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;xmlns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res-auto&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wrap_content&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@color/primary&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;minHeight&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;?attr/actionBarSize&quot;&lt;/span&gt; 
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;paddingTop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@dimen/appbar_top_padding&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;popupTheme&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@style/ThemeOverlay.AppCompat.Light&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@style/ThemeOverlay.AppCompat.Dark&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;widget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Toolbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-cpp&quot;&gt;
+    &amp;lt;android.support.v7.widget.Toolbar 
+        xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+        xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:background=&quot;@color/primary&quot;
+        android:minHeight=&quot;?attr/actionBarSize&quot; 
+        android:paddingTop=&quot;@dimen/appbar_top_padding&quot;
+        app:popupTheme=&quot;@style/ThemeOverlay.AppCompat.Light&quot;
+        app:theme=&quot;@style/ThemeOverlay.AppCompat.Dark&quot;&amp;gt;
+        &amp;lt;/android.support.v7.widget.Toolbar&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 
 &lt;p&gt;&lt;b&gt;Then came material tabs&lt;/b&gt;
     For my lazy fellas we gotta head over to our browsers for two major classes, Mr. &lt;code&gt;SlidingTabLayout.java&lt;/code&gt; and Mrs.&lt;code&gt;SlidingTabStrip.java&lt;/code&gt;.
@@ -90,32 +256,29 @@ I assume you’ve created your project and everything is well set. Head over &lt
     With no error nearby, head over to &lt;code&gt;xml&lt;/code&gt; and add some lines
     first, add SlidingTabLayout just below &lt;code&gt;Toolbar&lt;/code&gt;. snippet for SlidingTablayout goes like this&lt;/p&gt;
 
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;aaron&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;material&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tabs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SlidingTabLayout&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/tabs&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wrap_content&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@color/primary&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;      &amp;lt;/android.aaron.com.material.tabs.SlidingTabLayout&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-cpp&quot;&gt;
+    &amp;lt;android.aaron.com.material.tabs.SlidingTabLayout
+        android:id=&quot;@+id/tabs&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:background=&quot;@color/primary&amp;gt;
+      &amp;lt;/android.aaron.com.material.tabs.SlidingTabLayout&amp;gt;
 
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;p&amp;gt;
 but watch out for the package name in &amp;lt;code&amp;gt;android.aaron.com.material.tabs.SlidingTabLayout&amp;lt;/code&amp;gt;. Make sure you replace it with your package.
 Now add &amp;lt;code&amp;gt;Viewpager&amp;lt;/code&amp;gt; below them. Something like
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 &lt;p&gt;&amp;lt;/p&amp;gt;&lt;/p&gt;
 
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ViewPager&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/pager&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout_alignParentTop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ViewPager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-cpp&quot;&gt;
+    &amp;lt;android.support.v4.view.ViewPager
+        android:id=&quot;@+id/pager&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:layout_alignParentTop=&quot;true&quot;&amp;gt;
+        &amp;lt;/android.support.v4.view.ViewPager&amp;gt;&amp;lt;/code&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 
 &lt;p&gt;With xml ready to rock and roll, head back to java&lt;/p&gt;
 &lt;p&gt;Start by doing the &lt;code&gt;findViewById()&lt;/code&gt; thing or use &lt;a href=&quot;http://jakewharton.github.io/butterknife/&quot;&gt;Butterknife&lt;/a&gt; if you are farmiliar with it (You should actually use the later...). So far so good? Thats what I thought.&lt;/p&gt;
@@ -126,88 +289,96 @@ Now add &amp;lt;code&amp;gt;Viewpager&amp;lt;/code&amp;gt; below them. Something
 &lt;p&gt;&lt;img src=&quot;public/images/tabs.png&quot; height=&quot;700px&quot; width=&quot;350px&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;Create three fragments. A simple fragment class looks like this &lt;/p&gt;
 
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PageTwo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Fragment&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PageTwo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;c1&quot;&gt;// Required empty public constructor
-&lt;/span&gt;            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-cpp&quot;&gt;
+        public class PageTwo extends Fragment {
+            public PageTwo() {
+                // Required empty public constructor
+            }
 
-            &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Override&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;onCreateView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LayoutInflater&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inflater&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ViewGroup&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                     &lt;span class=&quot;n&quot;&gt;Bundle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;c1&quot;&gt;// Inflate the layout for this fragment
-&lt;/span&gt;                &lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inflater&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inflate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fragment_page_two&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+            @Override
+            public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                     Bundle savedInstanceState) {
+                // Inflate the layout for this fragment
+                View view = inflater.inflate(R.layout.fragment_page_two, container, false);
+                return view;
+            }
 
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+            }
+        }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 
 &lt;p&gt;&lt;b&gt;Mr Adapter, where you at?&lt;/b&gt;&lt;/p&gt;
 &lt;p&gt;Create a class, name it something like MaterialTabsAdapter or something not weird. With simplicity kept constant, extend &lt;code&gt;FragmentPagerAdapter&lt;/code&gt;
 in the &lt;code&gt;getItem(int position)&lt;/code&gt; method, you can get fragments by, &lt;/p&gt;
 
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-    &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Override&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Fragment&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-cpp&quot;&gt;
+    @Override
+    public Fragment getItem(int position) {
       
-        &lt;span class=&quot;n&quot;&gt;Fragment&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;switch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;fragment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PageOne&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        Fragment fragment;
+        switch (position) {
+            case 0:
+                fragment = new PageOne();
+                return fragment;
 
-            &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;fragment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PageThree&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;fragment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PageTwo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;fragment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PageOne&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+            case 1:
+                fragment = new PageThree();
+                return fragment;
+            case 2:
+                fragment = new PageTwo();
+                return fragment;
+            default:
+                fragment = new PageOne();
+                return fragment;
+        }
+    }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 
 &lt;p&gt;This means that when we are in a particular page we load a particular fragment&lt;/p&gt;
 
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-    &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Override&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;//The number of fragments we got
-&lt;/span&gt;            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-cpp&quot;&gt;
+    @Override
+        public int getCount() {
+            //The number of fragments we got
+            return 3;
+        }
 
-        &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Override&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CharSequence&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getPageTitle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;//Sample titles for our tabs
-&lt;/span&gt;            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Movies&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Series&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Films&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        @Override
+        public CharSequence getPageTitle(int position) {
+            //Sample titles for our tabs
+            if (position == 0) {
+                return &quot;Movies&quot;;
+            } else if (position == 1) {
+                return &quot;Series&quot;;
+            } else if (position == 2) {
+                return &quot;Films&quot;;
+            }
+            return &quot;&quot;;
+    }
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 
-&lt;p&gt;So far we've done nearly everything.&lt;/p&gt;
+&lt;p&gt;So far we&#39;ve done nearly everything.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Finally...&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;
 Lets make this baby to walk on its own.
-	Open &lt;code&gt;MainActivity.java&lt;/code&gt;, assuming that's the correct class and add the following&lt;/p&gt;
+	Open &lt;code&gt;MainActivity.java&lt;/code&gt;, assuming that&#39;s the correct class and add the following&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;MaterialTabsAdapter myFragmentAdapter = new MaterialTabsAdapter(getSupportFragmentManager());   
 	viewPager.setAdapter(myFragmentAdapter);
 	slidingTabLayout.setDistributeEvenly(true);
 	slidingTabLayout.setViewPager(viewPager);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;
-	This was my first post and it's probably terrible. Cheers!
-&lt;/p&gt;</content><author><name>Aaron Rono</name></author><summary type="html">This isn’t a detailed tutorial on how to implement material tabs but just a quick revisit on’em. I assume you’ve created your project and everything is well set. Head over Materialpallte for awesome color choices and download an xml type of colors.</summary></entry></feed>
+	This was my first post and it&#39;s probably terrible. Cheers!
+&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 19 May 2015 00:00:00 +0300</pubDate>
+        <link>http://int-a.github.io/blog/2015/material-tabs-revisited/</link>
+        <guid isPermaLink="true">http://int-a.github.io/blog/2015/material-tabs-revisited/</guid>
+        
+        
+      </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Material Tabs Revisited</title>
+    <meta name="description" content="This isn’t a detailed tutorial on how to implement material tabs but just a quick revisit on’em. I assume you’ve created your project and everything is well ...">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://int-a.github.io/blog/2015/material-tabs-revisited/">
+    <link rel="alternate" type="application/rss+xml" title="Anthony Intino" href="http://int-a.github.io/feed.xml" />
+  </head>
+
+  <body>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-64334623-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+    <main>
+      <header class="site-header">
+  <div class="container">
+    <h1><a href="/">Anthony<span>Intino</span></a></h1>
+
+    <button type="button" class="sliding-panel-button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="navbar sliding-panel-content">
+      <ul>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/resume" title="Resume">Resume</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="sliding-panel-fade-screen"></div>
+
+
+      <div class="container">
+        <article role="article" class="post">
+
+  <div class="card">
+    <header class="post-header">
+      <h1 class="post-title">Material Tabs Revisited</h1>
+      <p class="post-meta">May 19, 2015</p>
+    </header>
+
+    <div class="post-content">
+      <p>This isn’t a detailed tutorial on how to implement material tabs but just a quick revisit on’em. 
+I assume you’ve created your project and everything is well set. Head over <a href="http://www.materialpalette.com/">Materialpallte</a> for awesome color choices and download an xml type of colors.</p>
+
+<p>With Toolbar aboard in replacement of ActionBar, lets start by adding it to our new layout. roughly that would translate to something like this.</p>
+
+<pre><code class="language-cpp">
+    &lt;android.support.v7.widget.Toolbar 
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:minHeight="?attr/actionBarSize" 
+        android:paddingTop="@dimen/appbar_top_padding"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark"&gt;
+        &lt;/android.support.v7.widget.Toolbar&gt;
+</code></pre>
+
+<p><b>Then came material tabs</b>
+    For my lazy fellas we gotta head over to our browsers for two major classes, Mr. <code>SlidingTabLayout.java</code> and Mrs.<code>SlidingTabStrip.java</code>.
+    I like to get mine from Google IO app <a href="https://github.com/google/iosched/tree/master/android/src/main/java/com/google/samples/apps/iosched/ui/widget">Here</a> but you can also get them elsewhere. There is no rule that you should get them from somewhere but my laziness tells me so. 
+    Their names are self explanatory so lets see what happens under the hood.
+    With no error nearby, head over to <code>xml</code> and add some lines
+    first, add SlidingTabLayout just below <code>Toolbar</code>. snippet for SlidingTablayout goes like this</p>
+
+<pre><code class="language-cpp">
+    &lt;android.aaron.com.material.tabs.SlidingTabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary&gt;
+      &lt;/android.aaron.com.material.tabs.SlidingTabLayout&gt;
+
+</code></pre>
+<pre><code>&lt;p&gt;
+but watch out for the package name in &lt;code&gt;android.aaron.com.material.tabs.SlidingTabLayout&lt;/code&gt;. Make sure you replace it with your package.
+Now add &lt;code&gt;Viewpager&lt;/code&gt; below them. Something like
+</code></pre>
+<p>&lt;/p&gt;</p>
+
+<pre><code class="language-cpp">
+    &lt;android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"&gt;
+        &lt;/android.support.v4.view.ViewPager&gt;&lt;/code&gt;
+</code></pre>
+
+<p>With xml ready to rock and roll, head back to java</p>
+<p>Start by doing the <code>findViewById()</code> thing or use <a href="http://jakewharton.github.io/butterknife/">Butterknife</a> if you are farmiliar with it (You should actually use the later...). So far so good? Thats what I thought.</p>
+
+<p><strong>Them Fragments</strong></p>
+
+<p>I was thinking of using one fragment but then why not create seperate ones for diffrent purpose. Lets say we wanna create something like this... </p>
+<p><img src="public/images/tabs.png" height="700px" width="350px" /></p>
+<p>Create three fragments. A simple fragment class looks like this </p>
+
+<pre><code class="language-cpp">
+        public class PageTwo extends Fragment {
+            public PageTwo() {
+                // Required empty public constructor
+            }
+
+            @Override
+            public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                     Bundle savedInstanceState) {
+                // Inflate the layout for this fragment
+                View view = inflater.inflate(R.layout.fragment_page_two, container, false);
+                return view;
+            }
+
+            }
+        }
+</code></pre>
+
+<p><b>Mr Adapter, where you at?</b></p>
+<p>Create a class, name it something like MaterialTabsAdapter or something not weird. With simplicity kept constant, extend <code>FragmentPagerAdapter</code>
+in the <code>getItem(int position)</code> method, you can get fragments by, </p>
+
+<pre><code class="language-cpp">
+    @Override
+    public Fragment getItem(int position) {
+      
+        Fragment fragment;
+        switch (position) {
+            case 0:
+                fragment = new PageOne();
+                return fragment;
+
+            case 1:
+                fragment = new PageThree();
+                return fragment;
+            case 2:
+                fragment = new PageTwo();
+                return fragment;
+            default:
+                fragment = new PageOne();
+                return fragment;
+        }
+    }
+</code></pre>
+
+<p>This means that when we are in a particular page we load a particular fragment</p>
+
+<pre><code class="language-cpp">
+    @Override
+        public int getCount() {
+            //The number of fragments we got
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            //Sample titles for our tabs
+            if (position == 0) {
+                return "Movies";
+            } else if (position == 1) {
+                return "Series";
+            } else if (position == 2) {
+                return "Films";
+            }
+            return "";
+    }
+
+</code></pre>
+
+<p>So far we've done nearly everything.</p>
+<p><strong>Finally...</strong></p>
+<p>
+Lets make this baby to walk on its own.
+	Open <code>MainActivity.java</code>, assuming that's the correct class and add the following</p>
+<pre><code>MaterialTabsAdapter myFragmentAdapter = new MaterialTabsAdapter(getSupportFragmentManager());   
+	viewPager.setAdapter(myFragmentAdapter);
+	slidingTabLayout.setDistributeEvenly(true);
+	slidingTabLayout.setViewPager(viewPager);
+</code></pre>
+<p>
+	This was my first post and it's probably terrible. Cheers!
+</p>
+
+
+    </div>
+
+    
+  </div>
+
+</article>
+
+      </div>
+
+      <footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="http://github.com/int-a" target="_blank"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://www.linkedin.com/in/afi3rd/" target="_blank"><i class="icon icon-linkedin"></i></a></li>
+</ul>
+
+    <p class="txt-medium-gray">
+      <small>&copy;2017 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+      <a href="http://github.com/int-a" target="_blank" class="github-corner"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#337ab7; color:#fff; position: absolute; top: 0; border: 0; right: 0;"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+      <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+      <script>
+      $(document).ready(function() {
+        $('.sliding-panel-button,.sliding-panel-fade-screen,.sliding-panel-close').on('click touchstart',function (e) {
+          $('.sliding-panel-content,.sliding-panel-fade-screen').toggleClass('is-visible');
+          e.preventDefault();
+        });
+      });
+      </script>
+    </main>
+  </body>
+</html>

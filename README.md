@@ -1,3 +1,1 @@
-# Aaron Rono
-
-This is a little blog about me and what code sharing
+My personal page. Created using Fernando Moreira's [end2end theme](https://github.com/nandomoreirame/end2end)
