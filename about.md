@@ -4,7 +4,7 @@ title: About
 ---
 
 <p class="message">
-  I used to think that I'm a programmer until I realized that I just write codes, just lines of codes.
+  I'm a android enthusiast software engineer. I love data science and our environment combined!
 </p>
 
 
