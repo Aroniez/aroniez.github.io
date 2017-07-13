@@ -14,30 +14,30 @@ sass:
   style: compressed # expanded
 
 # SEO settings
-title: Anthony Intino
+title: Aaron Rono
 description: "A place for my thoughts and experiences while learning Android"
 keywords: "Jekyll, theme, free, SEO, blog, web, Android, developer, engineer, android developer, android engineer"
-url: http://int-a.github.io
+url: http://aroniez.github.io
 baseurl: ""
 # baseurl: ""
 
 # google_analytics: UA-52446115-1
-repo: http://github.com/int-a
-disqus_shortname: "int-a"
-disqus_site_shortname: "int-a"
+repo: http://github.com/Aroniez
+disqus_shortname: "aroniez"
+disqus_site_shortname: "aroniez"
 
 # Author settings
 author:
-  name      : Anthony Intino
+  name      : Aaron Rono
   job       : Software Engineer
-  bio       : "Programmer, Traveler, Guitarist, Android Enthusiast. I'm learning Android development and loving it more and more as I do."
+  bio       : "Android Enthusiast, Data scientist. I'm learning Android development and loving it more and more as I do."
   thumb     : /images/author.png
-  email     : anthony.intino@gmail.com
-  url       : http://int-a.github.io
-  github    : http://github.com/int-a
+  email     : ronolikeaaron90@gmail.com
+  url       : http://aroniez.github.io
+  github    : http://github.com/Aroniez
   twitter   :
   facebook  :
-  linkedin  : https://www.linkedin.com/in/afi3rd/
+  linkedin  : https://www.linkedin.com/in/aaron-rono-88865077/
 
 # navbar pages
 navbar:

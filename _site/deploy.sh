@@ -8,8 +8,8 @@ bundle exec jekyll build
 cd ${HTML_FOLDER}
 
 # config
-git config --global user.email "anthony.intino@gmail.com"
-git config --global user.name "Anthony Intino"
+git config --global user.email "ronolikeaaron90@gmail.com"
+git config --global user.name "Aaron Rono"
 
 # deploy
 git init
