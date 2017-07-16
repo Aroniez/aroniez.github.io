@@ -24,7 +24,7 @@ permalink: /resume/
 
 ### Languages and Technologies
 
-- Java, SQL, XML, JSON, git, SVN
+- Java, SQL, XML, JSON, git, SVN, Kotlin
 - Android Studio, Visual Studio, Microsoft SQL Server, Eclipse, Microsoft Office/Visio/Sharepoint
 
 <br>
