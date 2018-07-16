@@ -4,7 +4,7 @@ title: Resume
 permalink: /resume/
 ---
 
-### Projects
+### Side Projects
 
 ##### 2016 - Present: [Codecanyon Personal Projects](https://codecanyon.net/user/aroniez/portfolio)
 - Designed and build the android apps with following android material design guidelines
