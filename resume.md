@@ -6,12 +6,14 @@ permalink: /resume/
 
 ### Side Projects
 
-##### 2016 - Present: [Codecanyon Personal Projects](https://codecanyon.net/user/aroniez/portfolio)
+##### 2016 - 2017: Personal marketplace projects
 - Designed and build the android apps with following android material design guidelines
 - Design and build API for each app.
 - I use Git for Control version and CircleCI for continuous integration.
 - I provide support to clients in terms of installations, bug fixing, general questions and update releasing
-
+Check them [Codecanyon projects](https://codecanyon.net/user/aroniez/portfolio)
+Others at [Codester Projects](https://www.codester.com/Aroniez)
+Others at [Chupamobile Projects](https://author.chupamobile.com/author/Aroniez)
 <br>
 
 ##### 2015 - 2016: [Codecanyon Collaboration Projects](https://codecanyon.net/user/_gilo/portfolio)
@@ -19,23 +21,24 @@ permalink: /resume/
 - Build our own APIs and backend for our apps
 - I collaborated with the team to design and develop the listed apps. We used Git for Control version
 - Provided support to clients in terms of installations, bug fixing, general questions and update releasing
-
+Check them [Here](https://codecanyon.net/user/_gilo/portfolio)
 <br>
 
 ### Languages and Technologies
 
-- Java, SQL, XML, JSON, git, SVN, Kotlin
-- Android Studio, Visual Studio, Microsoft SQL Server, Eclipse, Microsoft Office/Visio/Sharepoint
+- Android(Java + Kotlin), Python(django), Php(codeingiter), SQL, XML, JSON, git
 
 <br>
 
 ### Professional Experience
 
-##### 2016 - Lead Android Developer, NEST387 (Bosnia and Herzegovina)
-- Worked remotely with a team in building of android apps.
-- developed entreprice apps under various fields like entertainment, finance and education.
-- Transforming UI designs from design team into a working solutions
-- Responsible for development of business rules in the Decision Engine utilizing Java and XML to externalize business logic for scalability and visibility to business users.
+##### 2018 - Present Lead Android Developer, Mzazilink Labs
+- Plan, design and develop Mzazilink apps (Native android).
+- Design and develop Mzazilink website (Html and CSS + Boostrap)
+- Design and develop APIs (using django)
+Check [Mzazilink](https://play.google.com/store/apps/details?id=com.mzazilink.reports&hl=en)
+Check [Mzazilink Reports](https://play.google.com/store/apps/details?id=com.mzazilink.reports&hl=en)
+
 
 <br>
 
