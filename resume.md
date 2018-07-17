@@ -11,8 +11,11 @@ permalink: /resume/
 - Design and build API for each app.
 - I use Git for Control version and CircleCI for continuous integration.
 - I provide support to clients in terms of installations, bug fixing, general questions and update releasing
+<br>
 Check them [Codecanyon projects](https://codecanyon.net/user/aroniez/portfolio)
+<br>
 Others at [Codester Projects](https://www.codester.com/Aroniez)
+<br>
 Others at [Chupamobile Projects](https://author.chupamobile.com/author/Aroniez)
 <br>
 
@@ -21,6 +24,7 @@ Others at [Chupamobile Projects](https://author.chupamobile.com/author/Aroniez)
 - Build our own APIs and backend for our apps
 - I collaborated with the team to design and develop the listed apps. We used Git for Control version
 - Provided support to clients in terms of installations, bug fixing, general questions and update releasing
+<br>
 Check them [Here](https://codecanyon.net/user/_gilo/portfolio)
 <br>
 
@@ -36,7 +40,9 @@ Check them [Here](https://codecanyon.net/user/_gilo/portfolio)
 - Plan, design and develop Mzazilink apps (Native android).
 - Design and develop Mzazilink website (Html and CSS + Boostrap)
 - Design and develop APIs (using django)
+<br>
 Check [Mzazilink](https://play.google.com/store/apps/details?id=com.mzazilink.reports&hl=en)
+<br>
 Check [Mzazilink Reports](https://play.google.com/store/apps/details?id=com.mzazilink.reports&hl=en)
 
 
