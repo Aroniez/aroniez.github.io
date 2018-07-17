@@ -11,7 +11,6 @@ permalink: /resume/
 - Design and build API for each app.
 - I use Git for Control version and CircleCI for continuous integration.
 - I provide support to clients in terms of installations, bug fixing, general questions and update releasing
-
 <br>
 [Codecanyon projects](https://codecanyon.net/user/aroniez/portfolio)
 <br>
@@ -19,7 +18,7 @@ permalink: /resume/
 <br>
 [Chupamobile Projects](https://author.chupamobile.com/author/Aroniez)
 <br>
-
+<br>
 
 ##### 2015 - 2016: [Codecanyon Collaboration Projects](https://codecanyon.net/user/_gilo/portfolio)
 - Worked in team of 3 in building various android apps.
